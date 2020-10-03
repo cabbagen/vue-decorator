@@ -3,13 +3,7 @@
         <common-header>
             <template v-slot:ch-custom-opecation>
                 <div class="ch-search">
-                    <i-input
-                        v-model="name"
-                        suffix="ios-search"
-                        style="width: 220px"
-                        placeholder="搜索项目"
-                        @on-enter="handleInputEnter"
-                    />
+                    <i-input v-model="name" suffix="ios-search" style="width: 220px" placeholder="搜索项目" @on-enter="handleInputEnter" />
                 </div>
             </template>
         </common-header>
@@ -23,12 +17,7 @@
                         <project :item="item" :key="index" v-for="(item, index) in projects" />
                     </div>
                     <div class="vh-content-right-pagination" v-if="pagination.total > 0">
-                        <Page
-                            :total="pagination.total"
-                            :current="pagination.pageNo + 1"
-                            :page-size="pagination.pageSize"
-                            @on-change="handlePaginationChange"
-                        />
+                        <Page :total="pagination.total" :current="pagination.pageNo + 1" :page-size="pagination.pageSize" @on-change="handlePaginationChange" />
                     </div>
                 </template>
                 <template v-else>
@@ -104,7 +93,7 @@
         img {
             display: block;
             width: 200px;
-            margin-top: 80px;
+            margin-top: 180px;
         }
     }
     .vh-content-right-projects {
@@ -121,15 +110,3 @@
         justify-content: center;
     }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-

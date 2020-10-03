@@ -30,7 +30,6 @@
                     return 'Input';
                 }
             },
-
             handleModalOk: function() {
                 this.$emit('onOk');
             }
@@ -39,12 +38,10 @@
             value: function(value) {
                 this.visiable = value;
             },
-
             visiable: function(value) {
                 this.$emit('input', value);
             }
         }
-
     };
 </script>
 

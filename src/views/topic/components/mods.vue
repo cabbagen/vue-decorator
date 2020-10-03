@@ -77,5 +77,3 @@
         padding-left: 3px;
     }
 </style>
-
-

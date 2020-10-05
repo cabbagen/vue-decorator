@@ -9,22 +9,15 @@
         </common-header>
         <div class="vh-content">
             <div class="vh-content-left">
-                <slider />
+                <cm-slider />
             </div>
             <div class="vh-content-right">
-                <template v-if="projects.length > 0">
-                    <div class="vh-content-right-projects">
-                        <project :item="item" :key="index" v-for="(item, index) in projects" />
-                    </div>
-                    <div class="vh-content-right-pagination" v-if="pagination.total > 0">
-                        <Page :total="pagination.total" :current="pagination.pageNo + 1" :page-size="pagination.pageSize" @on-change="handlePaginationChange" />
-                    </div>
-                </template>
-                <template v-else>
-                    <div class="vh-content-right-empty">
-                        <img src="/images/empty.png" alt="empty" />
-                    </div>
-                </template>
+                <div class="vh-content-rigth-title">
+                    <h3>我的工作台</h3>
+                </div>
+                <div class="vh-content-right-table">
+                    <cm-panel :projects="projects" />
+                </div>
             </div>
         </div>
     </div>
@@ -32,16 +25,16 @@
 
 <script type="text/javascript">
     import { mapState, mapActions } from 'vuex';
-    import CommonHeader from '@/components/header/index';
+    import Panel from './components/panel.vue';
     import Slider from './components/slider.vue';
-    import Project from './components/project.vue';
+    import CommonHeader from '@/components/header/index';
 
     export default {
         name: 'view-home',
         components: {
-            CommonHeader,
-            Slider,
-            Project,
+            'cm-panel': Panel,
+            'cm-slider': Slider,
+            'common-header': CommonHeader,
         },
         data: function() {
             return {
@@ -67,7 +60,6 @@
             }
         },
     }
-
 </script>
 
 <style lang="less" scoped>
@@ -82,31 +74,14 @@
     .vh-content-right {
         flex: 1;
         width: 100%;
-        box-sizing: border-box;
-        padding: 19px 40px 0 40px;
         position: relative;
+        box-sizing: border-box;
+        padding: 20px 46px 0 46px;
     }
-    .vh-content-right-empty {
-        display: flex;
-        justify-content: center;
-
-        img {
-            display: block;
-            width: 200px;
-            margin-top: 180px;
-        }
-    }
-    .vh-content-right-projects {
-        display: flex;
-        margin: 0 -10px;
-        flex-wrap: wrap;
-        align-items: flex-start;
-    }
-    .vh-content-right-pagination {
-        display: flex;
-        position: absolute;
-        bottom: 30px;
-        left: 45%;
-        justify-content: center;
+    .vh-content-rigth-title {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #eeeeee;
     }
 </style>

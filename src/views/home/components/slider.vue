@@ -8,12 +8,15 @@
             <div
                 :key="index"
                 v-for="(item, index) in menus"
-                :class="`vhs-menus-item ${selectedMenuItemIndex == item.state ? 'selected' : ''}`"
                 @click="handleSelectMenuItem(item.state)"
+                :class="['vhs-menus-item', selectedMenuItemIndex == item.state ? 'selected' : '']"
             >
                 <icon :type="item.icon" />
                 <span>{{item.name}}</span>
             </div>
+        </div>
+        <div class="vhs-button">
+            <p>自主建站，从这里开始</p>
         </div>
     </div>
 </template>
@@ -30,11 +33,6 @@
                     state: 1,
                     name: '全部项目',
                     icon: 'logo-buffer',
-                }, {
-                    id: 2,
-                    state: 3,
-                    name: '最近修改',
-                    icon: 'ios-time',
                 }, {
                     id: 3,
                     state: 2,
@@ -70,8 +68,10 @@
     .vh-slider {
         width: 100%;
         height: 100%;
-        background-color: #ffffff;
         overflow: hidden;
+        position: relative;
+        background-color: #ffffff;
+        border-right: 1px solid #e2e2e2;
     }
     .vhs-new-btn {
         width: 200px;
@@ -107,11 +107,23 @@
         }
         &.selected {
             color: #000000;
-            background-color: #dddddd;
+            background-color: #efefef;
         }
         i {
             font-size: 18px;
             margin-right: 5px;
         }
+    }
+    .vhs-button {
+        width: 230px;
+        height: 46px;
+        line-height: 46px;
+        left: 50%;
+        bottom: 0px;
+        color: #bbbbbb;
+        position: absolute;
+        text-align: center;
+        transform: translateX(-50%);
+        border-top: 1px dashed #dddddd;
     }
 </style>

@@ -3,7 +3,7 @@ import ViewUI from 'view-design';
 import VueRouter from 'vue-router';
 
 import App from './App.vue'
-import router from './router';
+import router from './router/index';
 
 import store from './store/index';
 import PrintPlugin from './plugins/print.plugin';
@@ -22,7 +22,7 @@ if (window.ATopic) {
 Vue.config.productionTip = false;
 
 new Vue({
-    router,
     store,
+    router,
 	render: h => h(App),
 }).$mount('#app')

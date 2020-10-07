@@ -1,0 +1,81 @@
+@import "../../styles/theme.less";
+@prefix: common-header;
+
+.@{prefix}-container {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    padding: 0 40px;
+    z-index: 10;
+    position: relative;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    justify-content: space-between;
+    box-shadow: 0px 5px 5px #f3f3f3;
+}
+.@{prefix}-left {
+    display: flex;
+    padding-top: 8px;
+    box-sizing: border-box;
+}
+.@{prefix}-logo img {
+    height: 30px;
+    display: inline-block;
+}
+.@{prefix}-search {
+    margin: 1px 0 0 60px;
+
+    /deep/ .ivu-icon {
+        line-height: 28px !important;
+    }
+    /deep/ input {
+        height: 28px;
+        color: #555555;
+        font-size: 12px;
+        padding-left: 16px;
+        border-radius: 20px;
+        background-color: #eeeeee;
+    }
+}
+.@{prefix}-right {
+    display: flex;
+}
+.@{prefix}-opecation-btns {
+    display: flex;
+    align-self: center;
+    margin-right: 40px;
+}
+.@{prefix}-opecation-btns a {
+    color: #333333;
+    margin-right: 40px;
+    display: inline-block;
+
+    &:hover {
+        color: @base-color;
+    }
+}
+.@{prefix}-user-notice {
+    font-size: 20px;
+    margin-right: 20px;
+    align-self: center;
+
+    /deep/ .ivu-badge-dot {
+        top: 2px;
+        right: -9px;
+    }
+}
+.@{prefix}-user-meun {
+    cursor: pointer;
+}
+.@{prefix}-user-meun .@{prefix}-user-icon img {
+    width: 34px;
+    height: 34px;
+    margin-top: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.@{prefix}-user-meun .@{prefix}-user-icon i {
+    top: -10px;
+    margin-left: 10px;
+    position: relative;
+}

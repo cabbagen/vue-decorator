@@ -1,25 +1,14 @@
-<template>
-    <div class="vh-panel">
-        <div class="vh-panel-header">
-            <cm-panel-opecation :filters="types" />
-        </div>
-        <div class="vh-panel-content">
-            <common-table :columns="columns" :dataSource="projects" />
-        </div>
-    </div>
-</template>
-
-<script type="text/javascript">
 import moment from 'moment';
-import { checkType } from '@/utils/utils';
+import prefix from '@/mixins/prefix.mixin.js';
 import CommonTable from '@/components/table/index.vue';
-import PanelOpecation from './panel-opecations.vue';
+import PanelOpecation from '../panel-opecation/index.vue';
 
 export default {
     name: 'view-home-panel',
+    mixins: [prefix],
     components: {
         'common-table': CommonTable,
-        'cm-panel-opecation': PanelOpecation,
+        'cp-panel-opecation': PanelOpecation,
     },
     data: function() {
         return {
@@ -32,7 +21,7 @@ export default {
             columns: this.getTableColumns(),
         };
     },
-    props: ['projects'],
+    props: ['projects', 'pagination'],
     methods: {
         getTableColumns: function() {
             const columns = [{
@@ -70,13 +59,3 @@ export default {
         },
     }
 }
-</script>
-
-<style lang="less" scoped>
-    .vh-panel-content {
-        margin-top: 10px;
-    }
-    .opecation-item {
-        margin: 0 10px;
-    }
-</style>

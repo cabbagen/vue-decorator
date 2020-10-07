@@ -10,7 +10,7 @@ function install(Vue, options) {
 }
 
 export default {
+    install,
     name: 'vue-print',
     version: '1.0.0',
-    install,
 };

@@ -28,7 +28,7 @@ export default {
             const { pagination, state } = ctx.state;
             const { pageSize, pageNo } = pagination;
 
-            Network.get('/proxy/cms/projects', { pageSize, pageNo, state, name: '', ...payload }).then(result => {
+            Network.get('/proxy/cms/projects', { pageSize, pageNo, state, ...payload }).then(result => {
                 const data = {
                     projects: result.projects || [],
                     pagination: Object.assign({}, pagination, {

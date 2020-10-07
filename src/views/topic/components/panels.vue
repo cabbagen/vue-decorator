@@ -117,7 +117,7 @@
 </script>
 
 <style lang="less" scoped>
-    @import "../../../theme/mixins.less";
+    @import "../../../styles/mixins.less";
 
     .vt-panels {
         width: 100%;

@@ -1,4 +1,4 @@
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import prefix from '@/mixins/prefix.mixin.js';
 import CommonHeader from '@/components/header/index.vue';
 import Panel from './components/panel/index.vue';
@@ -17,22 +17,13 @@ export default {
             name: '',
         };
     },
-    computed: mapState('project', {
-        projects: state => state.projects,
-        pagination: state => state.pagination,
-    }),
-    mounted: function() {
-        this.getProjects();
-    },
     methods: {
-        ...mapActions('project', ['getProjects']),
-        
-        handlePaginationChange: function(pageNo) {
-            this.getProjects({ pageNo: pageNo - 1, name: this.name });
-        },
+        ...mapActions('project', ['updateProjectState']),
 
         handleInputEnter: function() {
-            this.getProjects({ name: this.name });
+            this.updateProjectState({
+                search: { name: this.name },
+            });
         }
     },
 };

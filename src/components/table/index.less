@@ -1,9 +1,13 @@
+@import "../../styles/theme.less";
+
 @prefix: common-table;
 
 .@{prefix}-header {
     height: 56px;
     display: flex;
+    padding: 0 8px;
     line-height: 56px;
+    box-sizing: border-box;
     border-bottom: 1px solid #eeeeee;
 }
 .@{prefix}-header .@{prefix}-column {
@@ -12,9 +16,34 @@
 .@{prefix}-body-row {
     height: 48px;
     display: flex;
+    padding: 0 8px;
     line-height: 48px;
+    box-sizing: border-box;
     border-bottom: 1px solid #eeeeee;
+
+    &:hover {
+        cursor: pointer;
+        background-color: fade(@assist-color, 10%);
+    }
 }
 .@{prefix}-body-row .@{prefix}-body-row-item {
     width: 100%;
+}
+.@{prefix}-pagination {
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    line-height: 32px;
+    margin: 20px 0;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+.@{prefix}-body-opecation-row span {
+    cursor: pointer;
+    margin-right: 10px;
+    color: @assist-color;
+
+    &:last-child {
+        margin-right: 0;
+    }
 }

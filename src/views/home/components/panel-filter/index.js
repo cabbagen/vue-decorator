@@ -7,5 +7,10 @@ export default {
         return {
         };
     },
-    props: ['filters'],
+    props: ['filters', 'selected'],
+    methods: {
+        handleSelectFilterItem: function(item) {
+            this.$emit('handleSelectFilterItem', item);
+        },
+    }
 };

@@ -14,16 +14,26 @@ export default {
         };
     },
     computed: mapState('project', {
+        pagination: state => state.pagination,
         selectedMenuItemIndex: state => state.state,
     }),
     methods: {
         ...mapActions('project', ['getProjects']),
 
-        ...mapMutations('project', ['updateCurrentState']),
+        ...mapMutations('project', ['updateProjectState']),
 
         handleSelectMenuItem: function(stateValue) {
-            this.updateCurrentState(stateValue);
-            this.getProjects({ pageNo: 0, name: '' });
+            this.updateProjectState({
+                state: stateValue,
+                search: {
+                    name: '',
+                    type: 0,
+                },
+                pagination: {
+                    ...this.pagination, pageNo: 0,
+                },
+            });
+            this.getProjects();
         },
     },
 };

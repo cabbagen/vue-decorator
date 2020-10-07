@@ -1,10 +1,15 @@
-import Network from '@/utils/network.js';
+import { Message } from 'view-design';
+import network from '@/utils/network.js';
 
 export default {
     namespaced: true,
 
     state: {
         state: 1,
+        search: {
+            type: 0,
+            name: '',
+        },
         projects: [],
         pagination: {
             total: 0,
@@ -18,26 +23,36 @@ export default {
             state.projects = data.projects;
             state.pagination = data.pagination;
         },
-        updateCurrentState(state, projectStateValue) {
-            state.state = projectStateValue;
+        updateProjectState(state, payload) {
+            Object.keys(payload).forEach(key => state[key] = payload[key]);
         },
     },
 
     actions: {
-        getProjects(ctx, payload = {}) {
-            const { pagination, state } = ctx.state;
+        getProjects(ctx) {
+            const { pagination, state, search } = ctx.state;
             const { pageSize, pageNo } = pagination;
 
-            Network.get('/proxy/cms/projects', { pageSize, pageNo, state, ...payload }).then(result => {
+            network.get('/proxy/cms/projects', { pageSize, pageNo, state, ...search }).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
                 const data = {
-                    projects: result.projects || [],
+                    projects: result.data.projects || [],
                     pagination: Object.assign({}, pagination, {
-                        total: result.total,
-                        pageNo: payload.pageNo || 0,
+                        total: result.data.total,
                     }),
                 };
                 ctx.commit('getProjectsSuccess', data);
             });
-        }
+        },
+        handleUpdateProject(ctx, payload = {}) {
+            network.post('/proxy/cms/project', payload).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                Message.success('操作成功');
+            });
+        },
     },
 }

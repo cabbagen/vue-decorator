@@ -2,7 +2,7 @@
     <div :class="`${$prefix}-container`">
         <common-header>
             <template v-slot:ch-custom-opecation>
-                <div class="ch-search">
+                <div class="common-header-search">
                     <i-input v-model="name" suffix="ios-search" style="width: 220px" placeholder="搜索项目" @on-enter="handleInputEnter" />
                 </div>
             </template>
@@ -16,7 +16,7 @@
                     <h3>我的工作台</h3>
                 </div>
                 <div :class="`${$prefix}-content-right-panel`">
-                    <cp-panel :projects="projects" :pagination="pagination" />
+                    <cp-panel />
                 </div>
             </div>
         </div>

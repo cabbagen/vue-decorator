@@ -14,11 +14,15 @@ export default {
         'common-table-cell': TableCell,
     },
     props: ['columns', 'dataSource', 'pagination'],
-    mounted: function() {
-    },
     methods: {
         handleInitInnerDataSource: function(dataSource) {
             this.innerDataSource = dataSource.map(dataItem => Object.assign({}, dataItem, { isSelected: false }));
+        },
+        handleOpetationItem: function(item, record) {
+            this.$emit('handleOpetationItem', item, record);
+        },
+        handlePaginationChange: function(pageNo) {
+            this.$emit('handlePaginationChange', pageNo);
         }
     },
     watch: {

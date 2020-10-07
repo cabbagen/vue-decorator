@@ -17,7 +17,10 @@
         <div :class="`${$prefix}-body`">
             <div :class="`${$prefix}-body-row`" v-for="(item, index) in innerDataSource" :key="item.rowKey || index">
                 <div :class="`${$prefix}-body-row-item`" v-for="(cItem, cIndex) in columns" :key="cIndex" :style="{flex: cItem.flex || 1}">
-                    <common-table-cell :value="item[cItem.dataIndex]" :record="item" :render="cItem.render" />
+                    <div v-if="cItem.opecations" :class="`${$prefix}-body-opecation-row`">
+                        <span v-for="(oItem, oIndex) in cItem.opecations" :key="oIndex" @click="handleOpetationItem(oItem, item)">{{oItem}}</span>
+                    </div>
+                    <common-table-cell v-else :value="item[cItem.dataIndex]" :record="item" :render="cItem.render" />
                 </div>
             </div>
         </div>
@@ -26,7 +29,12 @@
                 <span>{{`共 ${pagination.total || 0} 条`}}</span>
             </div>
             <div :class="`${$prefix}-pagination-fr`">
-                <Page :current="pagination.pageNo" :page-size="pagination.pageSize" :total="pagination.total" />
+                <Page
+                    :current="pagination.pageNo + 1"
+                    :page-size="pagination.pageSize"
+                    :total="pagination.total"
+                    @on-change="handlePaginationChange"
+                />
             </div>
         </div>
     </div>

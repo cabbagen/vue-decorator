@@ -1,14 +1,15 @@
 import moment from 'moment';
 import prefix from '@/mixins/prefix.mixin.js';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import CommonTable from '@/components/table/index.vue';
-import PanelOpecation from '../panel-opecation/index.vue';
+import PanelFilter from '../panel-filter/index.vue';
 
 export default {
     name: 'view-home-panel',
     mixins: [prefix],
     components: {
         'common-table': CommonTable,
-        'cp-panel-opecation': PanelOpecation,
+        'cp-panel-filter': PanelFilter,
     },
     data: function() {
         return {
@@ -21,8 +22,28 @@ export default {
             columns: this.getTableColumns(),
         };
     },
-    props: ['projects', 'pagination'],
+    computed: mapState('project', {
+        projects: state => state.projects,
+        pagination: state => state.pagination,
+        filterSelected: state => state.search.type || 0,
+    }),
+    mounted: function() {
+        this.getProjects();
+    },
     methods: {
+        ...mapActions('project', ['getProjects', 'handleUpdateProject']),
+
+        ...mapMutations('project', ['updateProjectState']),
+
+        handleSelectFilterItem: function(item) {
+            this.updateProjectState({
+                search: {
+                    name: '', type: item,
+                },
+            });
+            this.getProjects();
+        },
+        
         getTableColumns: function() {
             const columns = [{
                 flex: 4,
@@ -43,19 +64,33 @@ export default {
                 flex: 2,
                 title: '操作',
                 dataIndex: 'opecation',
-                render: (value, record, h) => {
-                    return h('div', [
-                        h('a', { attrs: { style: 'margin-right: 10px' } }, '预览'),
-                        h('a', { attrs: { style: 'margin-right: 10px' } }, '发布'),
-                        h('a', '删除'),
-                    ]);
-                },
+                opecations: ['预览', '发布', '删除'],
             }];
-
             return columns;
         },
         handleProjectClick: function(item) {
             this.$router.push({ path: '/topic', query: { projectId: item.id }});
+        },
+        handleOpetationItem: function(item, record) {
+            const stateMap = {
+                '发布': 1,
+                '删除': -1,
+            };
+            if (typeof stateMap[item] === 'undefined') {
+                return;
+            }
+
+            this.handleUpdateProject({ id: record.id, state: stateMap[item] }).then(() => {
+                this.getProjects();
+            });
+        },
+        handlePaginationChange: function(pageNo) {
+            this.updateProjectState({
+                pagination: {
+                    ...this.pagination, pageNo: pageNo - 1,
+                },
+            });
+            this.getProjects();
         },
     }
 }

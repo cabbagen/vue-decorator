@@ -11,12 +11,12 @@ function getRequestHeader() {
 }
 
 function handleRequestResponseSuccess(result) {
-    const { status, msg, data } = result.data;
+    const { status, msg } = result.data;
 
     if (status !== 200) {
         Message.error(msg);
     }
-    return data;
+    return result.data;
 }
 
 function handleRequestResponseException(error) {

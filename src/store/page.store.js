@@ -5,9 +5,9 @@ export default {
     namespaced: true,
 
     state: {
+        pages: [],
         selectedPageId: 0,
         selectedPageModules: [],
-        pages: [],
     },
 
     mutations: {
@@ -27,8 +27,11 @@ export default {
     actions: {
         // 获取页面列表
         getPages(ctx, payload = {}) {
-            return Network.get(`/proxy/cms/page/${payload.projectId}`).then(data => {
-                const pages = data.map(item => {
+            return Network.get(`/proxy/cms/page/${payload.projectId}`).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                const pages = result.data.map(item => {
                     return Object.assign({}, item, { type: 'panel' });
                 });
                 ctx.commit('updatePages', pages);
@@ -40,9 +43,11 @@ export default {
             if (ctx.state.selectedPageId === 0) {
                 return;
             }
-
-            return Network.get(`/proxy/cms/module/${ctx.state.selectedPageId}`).then(data => {
-                const modules = data.map(item => {
+            return Network.get(`/proxy/cms/module/${ctx.state.selectedPageId}`).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                const modules = result.data.map(item => {
                     return { id: item.id, type: item.type, ...JSON.parse(item.content) };
                 });
                 ctx.commit('updateSelectedPageModules', modules);
@@ -51,7 +56,10 @@ export default {
 
         // 新建页面
         createPage(ctx, payload) {
-            Network.post('/proxy/cms/page', payload).then(() => {
+            Network.post('/proxy/cms/page', payload).then((result) => {
+                if (result.status !== 200) {
+                    return;
+                }
                 Message.success('操作成功');
                 return ctx.dispatch('getPages', { projectId: payload.projectId });
             })
@@ -65,7 +73,10 @@ export default {
 
         // 添加装修模块
         createPageModule(ctx, payload) {
-            Network.post('/proxy/cms/module', payload).then(() => {
+            Network.post('/proxy/cms/module', payload).then((result) => {
+                if (result.status !== 200) {
+                    return;
+                }
                 Message.success('操作成功');
                 return ctx.dispatch('getPageModules');
             });
@@ -73,7 +84,10 @@ export default {
 
         // 编辑装修模块
         updatePageModule(ctx, payload) {
-            Network.post('/proxy/cms/module', payload).then(() => {
+            Network.post('/proxy/cms/module', payload).then((result) => {
+                if (result.status !== 200) {
+                    return;
+                }
                 Message.success('操作成功');
                 ctx.dispatch('getPageModules');
             });
@@ -81,7 +95,10 @@ export default {
         
         // 删除装修模块
         removePageModule(ctx, payload) {
-            Network.del(`/proxy/cms/module/${payload.componentId}`).then(() => {
+            Network.del(`/proxy/cms/module/${payload.componentId}`).then((result) => {
+                if (result.status !== 200) {
+                    return;
+                }
                 Message.success('删除成功');
                 return ctx.dispatch('getPageModules');
             });
@@ -89,7 +106,10 @@ export default {
         
         // 装修模块排序
         sortPageModules(ctx, payload) {
-            Network.post('/proxy/cms/module/sort', payload).then(() => {
+            Network.post('/proxy/cms/module/sort', payload).then((result) => {
+                if (result.status !== 200) {
+                    return;
+                }
                 Message.success('操作成功');
                 ctx.dispatch('getPageModules');
             });

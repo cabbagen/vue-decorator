@@ -1,8 +1,8 @@
 
 function install(Vue, options) {
-    Vue.prototype.$print = function(params) {
+    Vue.prototype.$print = function(...params) {
         try {
-            console.log(JSON.stringify(params, null, 2));
+            console.log(...params.map(item => JSON.stringify(item, null, 2)));
         } catch(e) {
             console.log(params);
         }

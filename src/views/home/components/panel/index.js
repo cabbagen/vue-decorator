@@ -49,6 +49,17 @@ export default {
                 flex: 4,
                 title: '名称',
                 dataIndex: 'name',
+                render: (value, record, h) => {
+                    console.log('record: ', record.id);
+
+                    return h('router-link', {
+                        attrs: {
+                            to: { name: 'topic', params: { id: record.id } },
+                            style: 'color: #515a6e',
+                            target: '_blank',
+                        },
+                    }, value);
+                },
             }, {
                 flex: 2,
                 title: '项目/页面数',

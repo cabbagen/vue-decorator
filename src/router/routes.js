@@ -11,7 +11,7 @@ const routes = [{
     name: 'login',
     component: Login,
 }, {
-    path: '/topic',
+    path: '/topic/:id',
     name: 'topic',
     component: Topic,
 }];

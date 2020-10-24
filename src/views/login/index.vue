@@ -1,12 +1,3 @@
-<style lang="less">
-    @import url('./index.less');
-</style>
-
-<script type="text/javascript">
-    import Index from './index.js';
-    export default Index;
-</script>
-
 <template>
     <div :class="`${$prefix}-container`">
         <div :class="`${$prefix}-form`">
@@ -31,3 +22,6 @@
         </div>
     </div>
 </template>
+
+<style lang="less" src="./index.less"></style>
+<script type="text/javascript" src="./index.js"></script>

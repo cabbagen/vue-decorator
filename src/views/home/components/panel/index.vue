@@ -19,11 +19,5 @@
     </div>
 </template>
 
-<style lang="less">
-    @import url('./index.less');
-</style>
-
-<script type="text/javascript">
-    import Index from './index.js';
-    export default Index;
-</script>
+<style lang="less" src="./index.less"></style>
+<script type="text/javascript" src="./index.js"></script>

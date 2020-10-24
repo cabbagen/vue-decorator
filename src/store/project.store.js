@@ -1,5 +1,6 @@
 import { Message } from 'view-design';
 import network from '@/utils/network.js';
+import { checkType } from '@/utils/utils.js';
 
 export default {
     namespaced: true,
@@ -24,7 +25,9 @@ export default {
             state.pagination = data.pagination;
         },
         updateProjectState(state, payload) {
-            Object.keys(payload).forEach(key => state[key] = payload[key]);
+            Object.keys(payload).forEach(prop => {
+                state[prop] = checkType(payload[prop]) === 'Object' ? Object.assign({}, state[prop], payload[prop]) : payload[prop];
+            });
         },
     },
 
@@ -46,7 +49,7 @@ export default {
                 ctx.commit('getProjectsSuccess', data);
             });
         },
-        handleUpdateProject(ctx, payload = {}) {
+        handleUpdateProject(_, payload = {}) {
             network.post('/proxy/cms/project', payload).then(result => {
                 if (result.status !== 200) {
                     return;

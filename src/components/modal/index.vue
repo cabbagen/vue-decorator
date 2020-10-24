@@ -1,12 +1,3 @@
-<style lang="less">
-    @import url("./index.less");
-</style>
-
-<script type="text/javascript">
-    import Index from './index.js';
-    export default Index;
-</script>
-
 <template>
     <div :class="`${$prefix}-container`">
         <Modal :title="title" v-model="visiable" @on-ok="handleModalOk">
@@ -19,3 +10,6 @@
         </Modal>
     </div>
 </template>
+
+<style lang="less" src="./index.less"></style>
+<script type="text/javascript" src="./index.js"></script>

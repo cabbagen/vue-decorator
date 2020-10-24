@@ -29,7 +29,6 @@
 
 <script type="text/javascript">
     import draggable from "vuedraggable";
-    import { getQuery } from '@/utils/utils.js';
     import { mapState, mapActions, mapMutations } from 'vuex';
 
     export default {
@@ -46,9 +45,6 @@
             ...mapState('page', {
                 selectedPageId: state => state.selectedPageId,
             }),
-            projectId: function() {
-                return parseInt(getQuery().projectId, 10);
-            },
         },
         components: {
             draggable,

@@ -1,12 +1,3 @@
-<style lang="less">
-    @import url("./index.less");
-</style>
-
-<script type="text/javascript">
-    import Index from './index.js';
-    export default Index;
-</script>
-
 <template>
     <div :class="`${$prefix}-container`">
         <div :class="`${$prefix}-header`">
@@ -24,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div :class="`${$prefix}-pagination`">
+        <div :class="`${$prefix}-pagination`" v-if="pagination.total > 0">
             <div :class="`${$prefix}-pagination-fl`">
                 <span>{{`共 ${pagination.total || 0} 条`}}</span>
             </div>
@@ -39,3 +30,6 @@
         </div>
     </div>
 </template>
+
+<style lang="less" src="./index.less"></style>
+<script type="text/javascript" src="./index.js"></script>

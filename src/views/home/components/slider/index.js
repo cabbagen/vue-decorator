@@ -1,5 +1,5 @@
-import { mapState, mapMutations, mapActions } from 'vuex';
 import prefix from '@/mixins/prefix.mixin.js';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
     name: 'view-home-slider',
@@ -22,12 +22,11 @@ export default {
 
         ...mapMutations('project', ['updateProjectState']),
 
-        handleSelectMenuItem: function(stateValue) {
+        handleSelectMenuItem: function(state) {
             this.updateProjectState({
-                state: stateValue,
+                state,
                 search: {
-                    name: '',
-                    type: 0,
+                    name: '', type: 0,
                 },
                 pagination: {
                     ...this.pagination, pageNo: 0,

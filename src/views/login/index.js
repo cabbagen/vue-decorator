@@ -19,12 +19,12 @@ export default {
     },
     methods: {
         async getCaptchaInfo() {
-            const captchaInfo = await network.get('/auth/captcha');
+            const result = await network.get('/auth/captcha');
 
-            if (!captchaInfo) {
+            if (result.status !== 200) {
                 return;
             }
-            this.captcha = captchaInfo;
+            this.captcha = result.data;
         },
         async handleLogin() {
             const { username, password, answer, captcha } = this;

@@ -23,9 +23,7 @@
 
 <script type="text/javascript">
     import CommonModal from '@/components/modal/index.vue';
-
     import { mapState, mapActions, mapMutations } from 'vuex';
-    import { getQuery } from '@/utils/utils.js';
 
     export default {
         name: 'view-topic-panels',
@@ -52,17 +50,17 @@
         components: {
             CommonModal,
         },
-        computed: mapState('page', {
-            pages: state => {
-                return state.pages.concat({ id: -1, type: 'opecation', name: '新增面板' });
-            },
-
-            selectedPageId: state => state.selectedPageId,
-
-            projectId: () => {
-                return parseInt(getQuery().projectId, 10);
-            },
-        }),
+        computed: {
+            ...mapState('page', {
+                pages: state => {
+                    return state.pages.concat({ id: -1, type: 'opecation', name: '新增面板' });
+                },
+                selectedPageId: state => state.selectedPageId,
+            }),
+            projectId: function() {
+                return this.$route.params.id;
+            }
+        },
         mounted: function() {
             this.getPages({ projectId: this.projectId }).then(() => {
                 const pageId = this.pages ? this.pages[0].id : 0;

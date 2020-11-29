@@ -1,5 +1,5 @@
-import { Message } from 'view-design';
 import network from '@/utils/network.js';
+import { message } from 'ant-design-vue';
 import { checkType } from '@/utils/utils.js';
 
 export default {
@@ -54,7 +54,7 @@ export default {
                 if (result.status !== 200) {
                     return;
                 }
-                Message.success('操作成功');
+                message.success('操作成功');
             });
         },
     },

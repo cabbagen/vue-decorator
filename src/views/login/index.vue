@@ -5,19 +5,19 @@
                 <img src="https://file.iviewui.com/dev-dist/5fbd2906a125dd0ba4fbd502263ca524.png" alt="logo" />
             </div>
             <div :class="`${$prefix}-form-row`">
-                <i-input type="text" size="large" v-model="username" prefix="md-contact" placeholder="请输入用户名" />
+                <a-input placeholder="请输入用户名" size="large" v-modal="username" />
             </div>
             <div :class="`${$prefix}-form-row`">
-                <i-input type="password" size="large" v-model="password" prefix="md-key" placeholder="请输入用户密码" />
+                <a-input placeholder="请输入用户密码" size="large" v-model="password" />
             </div>
             <div :class="[`${$prefix}-form-row`, 'captcha']">
-                <i-input type="text" size="large" v-model="answer" placeholder="验证码" style="width: 150px" />
+                <a-input placeholder="验证码" v-model="answer" size="large" style="width: 150px" />
                 <div @click="getCaptchaInfo">
                     <img :src="captcha.b64s" alt="captcha" />
                 </div>
             </div>
             <div :class="[`${$prefix}-form-row`, 'captcha']">
-                <i-button @click="handleLogin" type="primary" size="large" style="width: 100%">登录</i-button>
+                <a-button @click="handleLogin" type="primary" size="large" style="width: 100%">登录</a-button>
             </div>
         </div>
     </div>

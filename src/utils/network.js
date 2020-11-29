@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Message } from 'view-design';
+import { message } from 'ant-design-vue';
 
 const domain = 'http://localhost:7000';
 
@@ -14,13 +14,13 @@ function handleRequestResponseSuccess(result) {
     const { status, msg } = result.data;
 
     if (status !== 200) {
-        Message.error(msg);
+        message.error(msg);
     }
     return result.data;
 }
 
 function handleRequestResponseException(error) {
-    Message.error(error.message);
+    message.error(error.message);
 }
 
 const network = {

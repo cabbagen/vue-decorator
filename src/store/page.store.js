@@ -1,5 +1,5 @@
-import { Message } from 'view-design';
 import Network from '@/utils/network.js';
+import { message } from 'ant-design-vue';
 
 export default {
     namespaced: true,
@@ -60,7 +60,7 @@ export default {
                 if (result.status !== 200) {
                     return;
                 }
-                Message.success('操作成功');
+                message.success('操作成功');
                 return ctx.dispatch('getPages', { projectId: payload.projectId });
             })
             .then(() => {
@@ -77,7 +77,7 @@ export default {
                 if (result.status !== 200) {
                     return;
                 }
-                Message.success('操作成功');
+                message.success('操作成功');
                 return ctx.dispatch('getPageModules');
             });
         },
@@ -88,7 +88,7 @@ export default {
                 if (result.status !== 200) {
                     return;
                 }
-                Message.success('操作成功');
+                message.success('操作成功');
                 ctx.dispatch('getPageModules');
             });
         },
@@ -99,7 +99,7 @@ export default {
                 if (result.status !== 200) {
                     return;
                 }
-                Message.success('删除成功');
+                message.success('删除成功');
                 return ctx.dispatch('getPageModules');
             });
         },
@@ -110,7 +110,7 @@ export default {
                 if (result.status !== 200) {
                     return;
                 }
-                Message.success('操作成功');
+                message.success('操作成功');
                 ctx.dispatch('getPageModules');
             });
         },

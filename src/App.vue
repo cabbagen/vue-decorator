@@ -1,5 +1,5 @@
 <style lang="less">
-    @import "./styles/reset.less";
+    @import "./themes/reset.less";
 </style>
 <script>
     export default {

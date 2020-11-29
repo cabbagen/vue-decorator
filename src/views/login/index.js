@@ -1,9 +1,14 @@
-import network from '@/utils/network';
-import prefix from '@/mixins/prefix.mixin.js';
+import { Input, Button, message } from 'ant-design-vue';
+import Network from '../../utils/network';
+import prefix from '../../mixins/prefix.mixin';
 
 export default {
-    name: 'view-login',
     mixins: [prefix],
+    name: 'view-login',
+    components: {
+        'a-input': Input,
+        'a-button': Button,
+    },
     data: function() {
         return {
             answer: '',
@@ -19,7 +24,7 @@ export default {
     },
     methods: {
         async getCaptchaInfo() {
-            const result = await network.get('/auth/captcha');
+            const result = await Network.get('/auth/captcha');
 
             if (result.status !== 200) {
                 return;
@@ -30,11 +35,11 @@ export default {
             const { username, password, answer, captcha } = this;
 
             if (username === '' || password === '' || answer === '') {
-                this.$Message.warning("请将信息填写完整");
+                message.warning("请将信息填写完整");
                 return;
             }
 
-            const tokenInfo = await network.post('/auth/login', { username, password, answer, captchaId: captcha.captchaId });
+            const tokenInfo = await Network.post('/auth/login', { username, password, answer, captchaId: captcha.captchaId });
             
             if (!tokenInfo) {
                 this.getCaptchaInfo();

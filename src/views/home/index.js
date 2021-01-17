@@ -1,13 +1,16 @@
+import { Icon, Input } from 'ant-design-vue';
 import { mapActions, mapMutations } from 'vuex';
-import prefix from '@/mixins/prefix.mixin.js';
-import CommonHeader from '@/components/header/index.vue';
+import CommonHeader from '../../components/header/index.vue';
 import Panel from './components/panel/index.vue';
 import Slider from './components/slider/index.vue';
+import prefix from '../../mixins/prefix.mixin';
 
 export default {
-    name: 'view-home',
     mixins: [prefix],
+    name: 'view-home',
     components: {
+        'a-icon': Icon,
+        'a-input': Input,
         'cp-panel': Panel,
         'cp-slider': Slider,
         'common-header': CommonHeader,

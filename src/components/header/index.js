@@ -1,20 +1,21 @@
-import prefix from '@/mixins/prefix.mixin.js';
+import { Badge, Icon, Dropdown, Menu } from 'ant-design-vue';
+import prefix from '../../mixins/prefix.mixin';
+import { defaultMenus, defaultOpecations } from './config';
 
 export default {
-    name: 'common-header',
     mixins: [prefix],
+    name: 'common-header',
+    components: {
+        'a-icon': Icon,
+        'a-badge': Badge,
+        'a-dropdown': Dropdown,
+        'a-menu': Menu,
+        'a-menu-item': Menu.Item,
+    },
     data: function() {
         return {
-            menus: [
-                { name: '个人中心' },
-                { name: '退出登录' },
-            ],
-            opecations: [
-                { name: '素材广场' },
-                { name: '模版中心' },
-                { name: '教程指引' },
-                { name: '关于我们' },
-            ],
+            menus: defaultMenus,
+            opecations: defaultOpecations,
         };
     },
 };

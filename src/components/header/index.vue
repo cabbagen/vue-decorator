@@ -15,22 +15,22 @@
                 </div>
             </div>
             <div :class="`${$prefix}-user-notice`">
-                <Badge :dot="false">
-                    <Icon type="md-notifications" />
-                </Badge>
+                <a-badge :dot="true">
+                    <a-icon type="bell" />
+                </a-badge>
             </div>
             <div :class="`${$prefix}-user-meun`">
-                <dropdown>
+                <a-dropdown placement="bottomRight">
                     <div :class="`${$prefix}-user-icon`">
                         <img alt="user" src="https://cloudfront.modao.cc/uploads4/avatars/160/1608603/forum_132.jpeg" />
-                        <icon type="ios-arrow-down"></icon>
+                        <a-icon type="down" />
                     </div>
-                    <dropdown-menu slot="list">
-                        <dropdown-item v-for="(value, index) in menus" :key="index">
-                            {{value.name}}
-                        </dropdown-item>
-                    </dropdown-menu>
-                </dropdown>
+                    <a-menu slot="overlay">
+                        <a-menu-item v-for="(value, index) in menus" :key="index">
+                            <div :class="`${$prefix}-menu-item`">{{value.name}}</div>
+                        </a-menu-item>
+                    </a-menu>
+                </a-dropdown>
             </div>
         </div>
     </div>

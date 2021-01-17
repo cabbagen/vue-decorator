@@ -6,13 +6,13 @@ const router = new VueRouter({
     mode: 'history',
 });
 
-router.beforeEach((to, _, next) => {
-    const token = sessionStorage.getItem('token')
+// router.beforeEach((to, _, next) => {
+//     const token = sessionStorage.getItem('token')
 
-    if (!token && to.name !== 'login') {
-        next('/login');
-    }
-    next();
-});
+//     if (!token && to.name !== 'login') {
+//         next('/login');
+//     }
+//     next();
+// });
 
 export default router;

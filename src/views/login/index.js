@@ -6,8 +6,7 @@ export default {
     mixins: [prefix],
     name: 'view-login',
     components: {
-        'a-input': Input,
-        'a-button': Button,
+        'a-input': Input, 'a-button': Button,
     },
     data: function() {
         return {

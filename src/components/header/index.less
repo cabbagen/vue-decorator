@@ -1,4 +1,4 @@
-@import "../../styles/theme.less";
+@import "../../themes/theme.less";
 
 @prefix: common-header;
 
@@ -57,13 +57,8 @@
 }
 .@{prefix}-user-notice {
     font-size: 20px;
-    margin-right: 20px;
+    margin-right: 40px;
     align-self: center;
-
-    /deep/ .ivu-badge-dot {
-        top: 2px;
-        right: -9px;
-    }
 }
 .@{prefix}-user-meun {
     cursor: pointer;
@@ -76,7 +71,10 @@
     display: inline-block;
 }
 .@{prefix}-user-meun .@{prefix}-user-icon i {
-    top: -10px;
+    top: 4px;
     margin-left: 10px;
     position: relative;
+}
+.@{prefix}-menu-item {
+    padding: 3px 16px;
 }

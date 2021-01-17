@@ -1,7 +1,7 @@
-import prefix from '@/mixins/prefix.mixin.js';
+import prefix from '../../mixins/prefix.mixin';
 
 const bindedFnMap = {};
-const [boardWidth, boardHeight] = [window.innerWidth, window.innerHeight];
+const [ boardWidth, boardHeight ] = [ window.innerWidth, window.innerHeight ];
 
 export default {
     name: 'common-drag',
@@ -9,8 +9,8 @@ export default {
     data: function() {
         return {
             draging: false,
-            position: [0 /* translateX */, 0 /* translateY */],
-            dragedInitPosition: [0 /* translateX */, 0 /* translateY */],
+            position: [ 0 /* translateX */, 0 /* translateY */ ],
+            dragedInitPosition: [ 0 /* translateX */, 0 /* translateY */ ],
 
             willDragedRect: {
                 width: 0, height: 0, left: 0, top: 0,
@@ -85,8 +85,7 @@ export default {
             if (this.willDragedRect.top + translateY > boardHeight - this.willDragedRect.height) {
                 translateY = boardHeight - this.willDragedRect.height - this.willDragedRect.top;
             }
-
-            return [translateX, translateY];
+            return [ translateX, translateY ];
         },
         handleMouseUp: function() {
             this.draging = false;

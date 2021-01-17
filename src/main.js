@@ -11,11 +11,7 @@ import "./themes/reset.less";
 
 Vue.use(VueRouter);
 Vue.use(PrintPlugin);
-
-// topic library
-if (window.ATopic) {
-    Vue.use(window.ATopic = window.ATopic.default);
-}
+Vue.use(window.ATopic = window.ATopic.default);
 
 Vue.config.productionTip = false;
 

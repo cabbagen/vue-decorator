@@ -5,24 +5,25 @@
         </div>
         <div :class="`${$prefix}-filter`">
             <div :class="`${$prefix}-filter-item`">
-                <Dropdown trigger="click" @on-click="handleSelectFilterItem">
+                <a-dropdown placement="bottomLeft" :trigger="['click']">
                     <span :class="`${$prefix}-filter-name`">
-                        全部类型 <Icon type="ios-arrow-down"></Icon>
+                        全部类型 <a-icon type="down"></a-icon>
                     </span>
-                    <DropdownMenu slot="list" :class="`${$prefix}-filter-dropdown`">
-                        <DropdownItem
+                    <a-menu slot="overlay" :class="`${$prefix}-filter-dropdown`">
+                        <a-menu-item
+                            v-for="(item, index) in filters"
                             :key="index"
                             :name="item.value"
-                            v-for="(item, index) in filters"
                             :selected="item.value === selected"
+                            @click="handleSelectFilterItem(item)"
                         >
                             {{item.title}}
-                        </DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
+                        </a-menu-item>
+                    </a-menu>
+                </a-dropdown>
             </div>
             <div :class="`${$prefix}-filter-item`">
-                <Icon type="ios-funnel-outline" class="question-icon" />
+                <a-icon type="filter" class="question-icon"></a-icon>
             </div>
         </div>
     </div>

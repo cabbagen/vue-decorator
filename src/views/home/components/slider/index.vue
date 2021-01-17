@@ -1,17 +1,17 @@
 <template>
     <div :class="`${$prefix}-slider`">
         <div :class="`${$prefix}-new-btn`">
-            <icon type="md-add" />
+            <a-icon type="plus" />
             <span>新建项目</span>
         </div>
         <div :class="`${$prefix}-menus`">
             <div
-                :key="index"
                 v-for="(item, index) in menus"
-                @click="handleSelectMenuItem(item.state)"
+                :key="index"
                 :class="[`${$prefix}-menus-item`, selectedMenuItemIndex == item.state ? 'selected' : '']"
+                @click="handleSelectMenuItem(item.state)"
             >
-                <icon :type="item.icon" />
+                <a-icon :type="item.icon" />
                 <span>{{item.name}}</span>
             </div>
         </div>

@@ -11,14 +11,14 @@
         </common-header>
         <div :class="`${$prefix}-content`">
             <div :class="`${$prefix}-content-left`">
-                <!-- <cp-slider /> -->
+                <cp-slider />
             </div>
             <div :class="`${$prefix}-content-right`">
                 <div :class="`${$prefix}-content-right-title`">
                     <h3>我的工作台</h3>
                 </div>
                 <div :class="`${$prefix}-content-right-panel`">
-                    <!-- <cp-panel /> -->
+                    <cp-panel />
                 </div>
             </div>
         </div>

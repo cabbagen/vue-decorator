@@ -1,15 +1,15 @@
 import moment from 'moment';
 import prefix from '@/mixins/prefix.mixin.js';
+import { Table } from 'ant-design-vue';
 import { mapState, mapActions, mapMutations } from 'vuex';
-import CommonTable from '@/components/table/index.vue';
-import PanelFilter from '../panel-filter/index.vue';
+import PanelFilter from '../filter/index.vue';
 
 export default {
     name: 'view-home-panel',
     mixins: [prefix],
     components: {
-        'common-table': CommonTable,
-        'cp-panel-filter': PanelFilter,
+        'cp-filter': PanelFilter,
+        'a-table': Table,
     },
     data: function() {
         return {
@@ -21,6 +21,14 @@ export default {
             ],
             columns: this.getTableColumns(),
         };
+    },
+    filters: {
+        dateFormat: function(dateString) {
+            if (!dateString) {
+                return '-';
+            }
+            return moment(dateString).format('YYYY-MM-DD HH:mm:ss');
+        }
     },
     computed: mapState('project', {
         projects: state => state.projects,
@@ -38,7 +46,7 @@ export default {
         handleSelectFilterItem: function(item) {
             this.updateProjectState({
                 search: {
-                    name: '', type: item,
+                    name: '', type: item.value,
                 },
             });
             this.getProjects();
@@ -46,36 +54,18 @@ export default {
         
         getTableColumns: function() {
             const columns = [{
-                flex: 4,
                 title: '名称',
-                dataIndex: 'name',
-                render: (value, record, h) => {
-                    console.log('record: ', record.id);
-
-                    return h('router-link', {
-                        attrs: {
-                            to: { name: 'topic', params: { id: record.id } },
-                            style: 'color: #515a6e',
-                            target: '_blank',
-                        },
-                    }, value);
-                },
+                scopedSlots: { customRender: 'table-name' },
             }, {
-                flex: 2,
                 title: '项目/页面数',
                 dataIndex: 'pageCount',
             }, {
-                flex: 2,
                 title: '创建时间',
                 dataIndex: 'createdAt',
-                render: (value) => {
-                    return value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : '-';
-                },
+                scopedSlots: { customRender: 'table-created-at' },
             }, {
-                flex: 2,
                 title: '操作',
-                dataIndex: 'opecation',
-                opecations: ['预览', '发布', '删除'],
+                scopedSlots: { customRender: 'table-opecation' },
             }];
             return columns;
         },
@@ -90,15 +80,14 @@ export default {
             if (typeof stateMap[item] === 'undefined') {
                 return;
             }
-
             this.handleUpdateProject({ id: record.id, state: stateMap[item] }).then(() => {
                 this.getProjects();
             });
         },
-        handlePaginationChange: function(pageNo) {
+        handlePaginationChange: function(pagination) {
             this.updateProjectState({
                 pagination: {
-                    ...this.pagination, pageNo: pageNo - 1,
+                    ...this.pagination, current: pagination.current,
                 },
             });
             this.getProjects();

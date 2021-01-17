@@ -14,7 +14,7 @@ export default {
         projects: [],
         pagination: {
             total: 0,
-            pageNo: 0,
+            current: 1,
             pageSize: 10,
         },
     },
@@ -34,9 +34,9 @@ export default {
     actions: {
         getProjects(ctx) {
             const { pagination, state, search } = ctx.state;
-            const { pageSize, pageNo } = pagination;
+            const { pageSize, current } = pagination;
 
-            network.get('/proxy/cms/projects', { pageSize, pageNo, state, ...search }).then(result => {
+            network.get('/proxy/cms/projects', { pageSize, pageNo: current - 1, state, ...search }).then(result => {
                 if (result.status !== 200) {
                     return;
                 }

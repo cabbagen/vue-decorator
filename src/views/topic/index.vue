@@ -1,17 +1,13 @@
 <template>
     <div :class="`${$prefix}-container`">
-        <common-header />
-        <div :class="`${$prefix}-content-panel`">
-            <div :class="`${$prefix}-website-map`">
-                <website-map />
-            </div>
-            <div :class="`${$prefix}-website-topic`">
-
-            </div>
-            <div :class="`${$prefix}-website-tools`">
-
-            </div>
+        <div :class="`${$prefix}-header`">
+            <common-header></common-header>
         </div>
+        <div :class="`${$prefix}-content`">
+            <page-filter></page-filter>
+            <decoration-panel></decoration-panel>
+        </div>
+        <common-decoration></common-decoration>
     </div>
 </template>
 

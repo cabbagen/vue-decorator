@@ -1,0 +1,58 @@
+@prefix: view-topic-page-filter;
+
+.@{prefix}-container {
+    width: 250px;
+    height: calc(100vh - 46px);
+    background-color: #ffffff;
+    border-right: 1px solid #e2e2e2;
+}
+.@{prefix}-header {
+    width: 100%;
+    display: flex;
+    line-height: 32px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e2e2e2;
+}
+.@{prefix}-header .plus {
+    cursor: pointer;
+    font-size: 18px;
+    padding-top: 8px;
+    margin-right: 10px;
+}
+.@{prefix}-search input {
+    font-size: 14px;
+}
+.@{prefix}-page-item {
+    width: 100%;
+    height: 46px;
+    cursor: pointer;
+    padding: 0 10px;
+    line-height: 46px;
+    position: relative;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: #f7f7f7;
+    }
+    &.selected {
+        color: rgb(45, 140, 240);
+        background-color: rgba(45, 140, 240, 0.08) !important;
+    }
+}
+.@{prefix}-page-item i {
+    font-size: 18px;
+    margin-right: 8px;
+}
+.@{prefix}-page-item .ellipsis {
+    top: 50%;
+    right: 10px;
+    position: absolute;
+    font-weight: bolder;
+    transform: translateY(-50%);
+}
+.@{prefix}-menu-item {
+    width: 70px;
+    font-size: 12px;
+    display: inline-block;
+}

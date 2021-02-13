@@ -1,13 +1,10 @@
 @prefix: common-drag;
 
-.mixin-dragable() {
+.@{prefix}-container {
 	top: 0;
 	left: 0;
+	cursor: move;
 	z-index: 1000;
 	position: fixed;
 	user-select: none;
-}
-
-.@{prefix}-container {
-	.mixin-dragable();
 }

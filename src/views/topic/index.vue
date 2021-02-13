@@ -7,7 +7,7 @@
             <page-filter></page-filter>
             <decoration-panel></decoration-panel>
         </div>
-        <common-decoration></common-decoration>
+        <tool-bar />
     </div>
 </template>
 

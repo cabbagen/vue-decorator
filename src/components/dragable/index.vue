@@ -1,5 +1,8 @@
 <template>
-	<div :style="dragableStyles" :id="dragableInstanceId" :class="`${$prefix}-container`" @mousedown="handleMouseDown">
+	<div :style="dragableStyles" :id="dragableInstanceId" :class="`${$prefix}-container`" @mousedown="handleMouseDown" v-if="!disable">
+		<slot></slot>
+	</div>
+	<div v-else>
 		<slot></slot>
 	</div>
 </template>

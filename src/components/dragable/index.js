@@ -1,7 +1,6 @@
 import prefix from '../../mixins/prefix.mixin';
 
-const bindedFnMap = {};
-const [ boardWidth, boardHeight ] = [ window.innerWidth, window.innerHeight ];
+const [boardWidth, boardHeight] = [window.innerWidth, window.innerHeight];
 
 export default {
     name: 'common-drag',
@@ -9,14 +8,26 @@ export default {
     data: function() {
         return {
             draging: false,
-            position: [ 0 /* translateX */, 0 /* translateY */ ],
-            dragedInitPosition: [ 0 /* translateX */, 0 /* translateY */ ],
+            prefix: this.$options.name,
+            position: [0 /* translateX */, 0 /* translateY */],
+            dragedInitPosition: [0 /* translateX */, 0 /* translateY */],
 
             willDragedRect: {
                 width: 0, height: 0, left: 0, top: 0,
             },
+            bindedFnMap: {},
         };
     },
+	props: {
+		initPosition: {
+			type: Array,
+			default: [0 /* translateX */, 0 /* translateY */]
+		},
+		disable: {
+			type: Boolean,
+			default: false,
+		},
+	},
     computed: {
         dragableInstanceId: function() {
             return `${this.$options.name}-${this._uid}`;
@@ -38,18 +49,17 @@ export default {
     },
     methods: {
         handleInitBindedFn: function() {
-            Object.assign(bindedFnMap, {
+            Object.assign(this.bindedFnMap, {
                 handleMouseMove: this.handleMouseMove.bind(this),
                 handleMouseUp: this.handleMouseUp.bind(this, false),
             });
         },
         handleMouseEventListener: function(type = 'addEventListener') {
-            document[type] && document[type]('mouseup', bindedFnMap['handleMouseUp'], false);
-            document[type] && document[type]('mousemove', bindedFnMap['handleMouseMove'], false);
+            document[type] && document[type]('mouseup', this.bindedFnMap['handleMouseUp'], false);
+            document[type] && document[type]('mousemove', this.bindedFnMap['handleMouseMove'], false);
         },
         handleCalcDragedRectWidthAndHeight: function() {
             const element = document.getElementById(this.dragableInstanceId);
-            
             this.willDragedRect = !element ? { width: 0, height: 0, top: 0, left: 0 } : element.getBoundingClientRect();
         },
         handleMouseDown: function(event) {
@@ -85,10 +95,16 @@ export default {
             if (this.willDragedRect.top + translateY > boardHeight - this.willDragedRect.height) {
                 translateY = boardHeight - this.willDragedRect.height - this.willDragedRect.top;
             }
-            return [ translateX, translateY ];
+
+            return [translateX, translateY];
         },
         handleMouseUp: function() {
             this.draging = false;
         }
     },
+	watch: {
+		initPosition: function(value) {
+			this.position = [value[0] - 20, value[1] - 20];
+		}
+	}
 }

@@ -1,0 +1,52 @@
+@import "../../../../themes/theme.less";
+
+@prefix: view-topic-tool-bar;
+
+.@{prefix}-container {
+    right: 30px;
+    bottom: 60px;
+    width: 140px;
+    position: fixed;
+}
+.@{prefix}-opecation-row {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 12px;
+}
+.@{prefix}-opecation-item {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: center;
+    border-radius: 30px;
+    background-color: #ffffff;
+    box-shadow: 1px 3px 4px #eeeeee;
+    overflow: hidden;
+    display: inline-block;
+
+    span {
+        top: -2px;
+        left: 14px;
+        display: none;
+        font-size: 14px;
+        margin-right: 30px;
+        position: relative;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &:hover {
+        width: 140px;
+        color: #ffffff;
+        transition: all 0.2s linear;
+        background-color: @mg-base-color;
+
+        span {
+            display: inline;
+            color: #ffffff;
+            transition: display 0.2s linear;
+        }
+    }
+}

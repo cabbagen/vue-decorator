@@ -1,3 +1,4 @@
+import { mapState, mapActions } from 'vuex';
 import prefix from '@/mixins/prefix.mixin.js';
 
 export default {
@@ -7,5 +8,22 @@ export default {
         return {
 
         };
+    },
+    computed: {
+        projectId: function() {
+            return this.$route.params.projectId || '';
+        },
+        ...mapState('page', {
+            selectedPageId: state => state.selectedPageId,
+            selectedPageModules: state => state.selectedPageModules,
+        }),
+    },
+    methods: {
+        ...mapActions('page', ['getPageModules']),
+    },
+    watch: {
+        selectedPageId: function() {
+            this.getPageModules();
+        },
     },
 }

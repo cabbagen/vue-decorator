@@ -1,6 +1,10 @@
 <template>
     <div :class="`${$prefix}-container`">
-        hello world
+        <div :class="`${$prefix}-mobile`">
+            <div v-for="(item, index) in selectedPageModules" :key="index" :class="`${$prefix}-row`">
+                <component :is="`tc-${item.type}`" v-bind="item" />
+            </div>
+        </div>
     </div>
 </template>
 

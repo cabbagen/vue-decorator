@@ -1,6 +1,8 @@
 <template>
     <div :class="`${$prefix}-container`">
-        
+        <common-dragable>
+            <span>hello world</span>
+        </common-dragable>
     </div>
 </template>
 

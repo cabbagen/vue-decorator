@@ -6,7 +6,11 @@
                 <a-icon :type="item.icon" />
             </div>
         </div>
-        <commom-decoration :visible="decorationVisible" />
+        <commom-decoration
+            :visible="decorationVisible"
+            @onCancel="hanleDecoraionCancel"
+            @onAddModule="handleAddModule"
+        />
     </div>
 </template>
 

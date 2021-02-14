@@ -39,11 +39,7 @@
                 </a-dropdown>
             </div>
         </div>
-        <create-page-modal
-            v-bind="modalInfo"
-            @handleModalOk="handleModalOk"
-            @handleModalCancel="handleModalCancel"
-        />
+        <create-page-modal v-bind="modalInfo" @handleModalOk="handleModalOk" @handleModalCancel="handleModalCancel" />
     </div>
 </template>
 

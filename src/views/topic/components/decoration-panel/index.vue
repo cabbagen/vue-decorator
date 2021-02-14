@@ -1,9 +1,20 @@
 <template>
     <div :class="`${$prefix}-container`">
         <div :class="`${$prefix}-mobile`">
-            <div v-for="(item, index) in selectedPageModules" :key="index" :class="`${$prefix}-row`">
-                <component :is="`tc-${item.type}`" v-bind="item" />
-            </div>
+            <draggable v-model="modules" @start="handleDragStart" @end="handleDragEnd" v-bind="dragOptions">
+                <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+                    <div v-for="(item, index) in modules" :key="index" :class="`${$prefix}-row`">
+                        <component
+                            :data="item"
+                            :componentId="item.id"
+                            :is="`tc-${item.type}-edit`"
+                            @visibleMonitor="visibleMonitor"
+                            @handleComponentOk="handleComponentOk"
+                            @handleComponentDelete="handleComponentDelete"
+                        />
+                    </div>
+                </transition-group>
+            </draggable>
         </div>
     </div>
 </template>

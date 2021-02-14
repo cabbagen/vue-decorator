@@ -2,6 +2,69 @@
 
 @prefix: common-decoration;
 
+.@{prefix}-drawer-wrap {
+    margin-top: 48px;
+    height: calc(100% - 48px);
+
+    .ant-drawer-content-wrapper {
+        box-shadow: none !important;
+    }
+}
 .@{prefix}-container {
-    
+    display: flex;
+    justify-content: space-between;
+}
+.@{prefix}-preview-item {
+    width: 300px;
+    position: relative;
+    margin-bottom: 10px;
+    border: 1px solid #eeeeee;
+
+    &:hover .@{prefix}-preview-item-mask {
+        display: flex;
+    }
+}
+.@{prefix}-preview-item-mask {
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    justify-content: center;
+    background-color: fade(#000000, 20%);
+}
+.@{prefix}-preview-item-btn {
+    width: 80px;
+    height: 28px;
+    font-size: 12px;
+    color: #ffffff;
+    line-height: 28px;
+    align-self: center;
+    border-radius: 5px;
+    text-align: center;
+    background-color: @mg-base-color;
+}
+.@{prefix}-component-groups {
+    right: 20px;
+    width: 140px;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 8px;
+    position: absolute;
+
+    span {
+        height: 32px;
+        line-height: 32px;
+        display: inline-block;
+    }
+}
+.@{prefix}-component-group-item {
+    &:hover {
+        color: @mg-base-color;
+    }
+    &.selected {
+        color: @mg-base-color;
+    }
 }

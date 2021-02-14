@@ -13,6 +13,7 @@ export default {
     mutations: {
         updatePages(state, pages) {
             state.pages = pages;
+            state.selectedPageId = pages[0] ? pages[0].id : 0;
         },
 
         updateSelectedPageModules(state, selectedPageModules) {

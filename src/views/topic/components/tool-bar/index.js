@@ -1,4 +1,5 @@
-import { Icon } from 'ant-design-vue';
+import { mapState, mapActions } from 'vuex';
+import { Icon, message } from 'ant-design-vue';
 import prefix from '@/mixins/prefix.mixin.js';
 import CommonDecoration from '@/components/decoration/index.vue';
 
@@ -23,6 +24,12 @@ export default {
         'a-icon': Icon,
         'commom-decoration': CommonDecoration,
     },
+    computed: {
+        ...mapState('page', {
+            selectedPageId: state => state.selectedPageId,
+            selectedPageModules: state => state.selectedPageModules,
+        }),
+    },
     data: function() {
         return {
             decorationVisible: false,
@@ -30,10 +37,28 @@ export default {
         };
     },
     methods: {
+        ...mapActions('page', ['createPageModule']),
+
         handleOpecationItem: function(type) {
             if (type === 'edit') {
                 this.decorationVisible = true;
             }
+        },
+        hanleDecoraionCancel: function() {
+            this.decorationVisible = false;
+        },
+        handleAddModule: function(item) {
+            if (!this.selectedPageId) {
+                message.info("请先选择装饰页面");
+                return;
+            }
+            const params = {
+                type: item.type,
+                pageId: this.selectedPageId,
+                sortNo: this.selectedPageModules.length,
+                content: JSON.stringify(item.struct),
+            };
+            this.createPageModule(params);
         }
     }
 }

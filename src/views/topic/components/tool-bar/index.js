@@ -25,6 +25,9 @@ export default {
         'commom-decoration': CommonDecoration,
     },
     computed: {
+        projectId: function() {
+            return this.$route.params.projectId || '';
+        },
         ...mapState('page', {
             selectedPageId: state => state.selectedPageId,
             selectedPageModules: state => state.selectedPageModules,
@@ -42,6 +45,11 @@ export default {
         handleOpecationItem: function(type) {
             if (type === 'edit') {
                 this.decorationVisible = true;
+                return;
+            }
+            if (type === 'download') {
+                window.open("http://localhost:7001/cms/projects/download/" + this.projectId, '_blank');
+                return;
             }
         },
         hanleDecoraionCancel: function() {

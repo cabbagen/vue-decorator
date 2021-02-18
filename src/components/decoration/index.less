@@ -9,6 +9,10 @@
     .ant-drawer-content-wrapper {
         box-shadow: none !important;
     }
+    .ant-drawer-body {
+        overflow-y: scroll;
+        height: calc(100% - 55px);
+    }
 }
 .@{prefix}-container {
     display: flex;
@@ -48,7 +52,6 @@
 }
 .@{prefix}-component-groups {
     right: 20px;
-    width: 140px;
     cursor: pointer;
     text-align: right;
     padding-right: 8px;

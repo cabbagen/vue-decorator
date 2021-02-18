@@ -11,7 +11,7 @@
         <div :class="`${$prefix}-right`">
             <div :class="`${$prefix}-opecation-btns`">
                 <div v-for="(item, index) in opecations" :key="index">
-                    <a href="">{{item.name}}</a>
+                    <span>{{item.name}}</span>
                 </div>
             </div>
             <div :class="`${$prefix}-user-notice`">

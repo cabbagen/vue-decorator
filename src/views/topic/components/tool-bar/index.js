@@ -63,7 +63,7 @@ export default {
             const params = {
                 type: item.type,
                 pageId: this.selectedPageId,
-                sortNo: this.selectedPageModules.length,
+                sortNo: this.selectedPageModules.length + 1,
                 content: JSON.stringify(item.struct),
             };
             this.createPageModule(params);

@@ -11,32 +11,34 @@ export default {
     data: function() {
         return {
             menus: [
-                { id: 1, state: 1, name: '全部项目', icon: 'project' },
-                { id: 2, state: 2, name: '标星项目', icon: 'star' },
-                { id: 3, state: -1, name: '回收站', icon: 'delete' },
+                { id: 1, state: undefined, name: '全部项目', icon: 'project', isMark: undefined, key: "normal" },
+                { id: 2, state: undefined, name: '标星项目', icon: 'star', isMark: 2, key: 'mark' },
+                { id: 3, state: -1, name: '回收站', icon: 'delete', isMark: undefined, key: 'deleted' },
             ],
         };
     },
-    computed: mapState('project', {
-        pagination: state => state.pagination,
-        selectedMenuItemIndex: state => state.state,
-    }),
+    computed: {
+        ...mapState('project', {
+            pagination: state => state.pagination,
+        }),
+        selectedMenuItemKey: function() {
+            return this.$route.params.panel || 'normal';
+        },
+    },
     methods: {
         ...mapActions('project', ['getProjects']),
 
         ...mapMutations('project', ['updateProjectState']),
 
-        handleSelectMenuItem: function(state) {
+        handleSelectMenuItem: function(item) {
             this.updateProjectState({
-                state,
+                pagination: { current: 1 },
                 search: {
-                    name: '', type: 0,
-                },
-                pagination: {
-                    ...this.pagination, pageNo: 0,
+                    name: '', type: undefined, state: item.state, isMark: item.isMark,
                 },
             });
             this.getProjects();
+            this.$router.push(`/workbench/${item.key}`);
         },
     },
 };

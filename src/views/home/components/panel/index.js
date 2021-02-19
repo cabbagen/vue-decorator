@@ -8,8 +8,8 @@ export default {
     name: 'view-home-panel',
     mixins: [prefix],
     components: {
-        'cp-filter': PanelFilter,
         'a-table': Table,
+        'cp-filter': PanelFilter,
     },
     data: function() {
         return {
@@ -28,14 +28,29 @@ export default {
                 return '-';
             }
             return moment(dateString).format('YYYY-MM-DD HH:mm:ss');
-        }
+        },
+        stateFormat: function(state) {
+            const stateMap = {
+                '1': '已上线',
+                '2': '未上线',
+                '-1': '已删除',
+            };
+            return stateMap[state] || '';
+        },
     },
     computed: mapState('project', {
         projects: state => state.projects,
         pagination: state => state.pagination,
-        filterSelected: state => state.search.type || 0,
     }),
     mounted: function() {
+        const panelKey = this.$route.params.panel || 'normal';
+
+        if (panelKey === 'mark') {
+            this.updateProjectState({ search: { isMark: 2 } });
+        }
+        if (panelKey === 'deleted') {
+            this.updateProjectState({ search: { state: -1 } });
+        }
         this.getProjects();
     },
     methods: {
@@ -45,13 +60,11 @@ export default {
 
         handleSelectFilterItem: function(item) {
             this.updateProjectState({
-                search: {
-                    name: '', type: item.value,
-                },
+                pagination: { current: 1 },
+                search: { name: '', type: item.value > 0 ? item.value : undefined },
             });
             this.getProjects();
         },
-        
         getTableColumns: function() {
             const columns = [{
                 title: '名称',
@@ -59,6 +72,10 @@ export default {
             }, {
                 title: '项目/页面数',
                 dataIndex: 'pageCount',
+            }, {
+                title: '状态',
+                dataIndex: 'state',
+                scopedSlots: { customRender: 'table-state' },
             }, {
                 title: '创建时间',
                 dataIndex: 'createdAt',
@@ -72,18 +89,6 @@ export default {
         handleProjectClick: function(item) {
             this.$router.push({ path: '/topic', query: { projectId: item.id }});
         },
-        handleOpetationItem: function(item, record) {
-            const stateMap = {
-                '发布': 1,
-                '删除': -1,
-            };
-            if (typeof stateMap[item] === 'undefined') {
-                return;
-            }
-            this.handleUpdateProject({ id: record.id, state: stateMap[item] }).then(() => {
-                this.getProjects();
-            });
-        },
         handlePaginationChange: function(pagination) {
             this.updateProjectState({
                 pagination: {
@@ -91,6 +96,21 @@ export default {
                 },
             });
             this.getProjects();
+        },
+        handleOpetationItemByMark: function(record) {
+            this.handleUpdateProject({ id: record.id, isMark: record.isMark === 1 ? 2 : 1 }).then(() => {
+                this.getProjects();
+            });
+        },
+        handleOpetationItemByPublish: function(record) {
+            this.handleUpdateProject({ id: record.id, state: record.state === 1 ? 2 : 1 }).then(() => {
+                this.getProjects();
+            });
+        },
+        handleOpetationItemByDelete: function(record) {
+            this.handleUpdateProject({ id: record.id, state: record.state === -1 ? 2 : -1 }).then(() => {
+                this.getProjects();
+            });
         },
     }
 }

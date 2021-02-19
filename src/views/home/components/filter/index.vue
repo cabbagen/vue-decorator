@@ -1,7 +1,7 @@
 <template>
     <div :class="`${$prefix}-container`">
         <div :class="`${$prefix}-opecations`">
-            <span>列表操作预留的位置</span>
+            <!-- <span>列表操作预留的位置</span> -->
         </div>
         <div :class="`${$prefix}-filter`">
             <div :class="`${$prefix}-filter-item`">
@@ -10,13 +10,7 @@
                         全部类型 <a-icon type="down"></a-icon>
                     </span>
                     <a-menu slot="overlay" :class="`${$prefix}-filter-dropdown`">
-                        <a-menu-item
-                            v-for="(item, index) in filters"
-                            :key="index"
-                            :name="item.value"
-                            :selected="item.value === selected"
-                            @click="handleSelectFilterItem(item)"
-                        >
+                        <a-menu-item v-for="(item, index) in filters" :key="index" @click="handleSelectFilterItem(item)">
                             {{item.title}}
                         </a-menu-item>
                     </a-menu>

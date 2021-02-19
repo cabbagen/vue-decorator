@@ -3,9 +3,9 @@ import Home from '../views/home/index.vue';
 import Topic from '@/views/topic/index.vue';
 
 const routes = [{
-    path: '/',
+    path: '/workbench/:panel',
     name: 'home',
-    component: Home
+    component: Home,
 }, {
     path: '/login',
     name: 'login',

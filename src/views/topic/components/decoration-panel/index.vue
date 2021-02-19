@@ -3,7 +3,7 @@
         <div :class="`${$prefix}-mobile`">
             <draggable v-model="modules" @start="handleDragStart" @end="handleDragEnd" v-bind="dragOptions">
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-                    <div v-for="(item, index) in modules" :key="index" :class="`${$prefix}-row`">
+                    <div v-for="(item) in modules" :key="item.id" :class="`${$prefix}-row`">
                         <component
                             :data="item"
                             :componentId="item.id"

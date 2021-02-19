@@ -6,7 +6,7 @@ const domain = 'http://localhost:7000';
 function getRequestHeader() {
     return {
         app_key: 'AMSJJWELSW',
-        token: sessionStorage.getItem('token') || '',
+        token: localStorage.getItem('token') || '',
     };
 }
 

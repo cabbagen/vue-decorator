@@ -8,15 +8,15 @@
             <div
                 v-for="(item, index) in menus"
                 :key="index"
-                :class="[`${$prefix}-menus-item`, selectedMenuItemIndex == item.state ? 'selected' : '']"
-                @click="handleSelectMenuItem(item.state)"
+                :class="[`${$prefix}-menus-item`, selectedMenuItemKey == item.key ? 'selected' : '']"
+                @click="handleSelectMenuItem(item)"
             >
                 <a-icon :type="item.icon" />
                 <span>{{item.name}}</span>
             </div>
         </div>
         <div :class="`${$prefix}-button`">
-            <p>自主建站，从这里开始</p>
+            <p>自主建站平台</p>
         </div>
     </div>
 </template>

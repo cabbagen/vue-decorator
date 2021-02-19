@@ -11,11 +11,11 @@ const defaultOpecations = [{
     type: 'download',
     icon: 'cloud-download',
     text: '源码下载',
-}, {
+},/* {
     type: 'setting',
     icon: 'setting',
     text: '网站设置',
-}];
+}*/];
 
 export default {
     name: 'view-topic-tool-bar',

@@ -1,4 +1,5 @@
 import { Input, Button, message } from 'ant-design-vue';
+import { getQuery } from '../../utils/utils';
 import Network from '../../utils/network';
 import prefix from '../../mixins/prefix.mixin';
 
@@ -23,7 +24,7 @@ export default {
     },
     methods: {
         async getCaptchaInfo() {
-            const result = await Network.get('/auth/captcha');
+            const result = await Network.get('/unAuth/captcha');
 
             if (result.status !== 200) {
                 return;
@@ -31,6 +32,7 @@ export default {
             this.captcha = result.data;
         },
         async handleLogin() {
+            const { returnUrl = '' } = getQuery();
             const { username, password, answer, captcha } = this;
 
             if (username === '' || password === '' || answer === '') {
@@ -38,14 +40,15 @@ export default {
                 return;
             }
 
-            const tokenInfo = await Network.post('/auth/login', { username, password, answer, captchaId: captcha.captchaId });
+            const result = await Network.post('/unAuth/login', { username, password, answer, captchaId: captcha.captchaId });
             
-            if (!tokenInfo) {
+            if (!result.data) {
                 this.getCaptchaInfo();
                 return;
             }
-            sessionStorage.setItem('token', tokenInfo.token);
-            this.$router.go(-1);
+            localStorage.setItem('token', result.data.token);
+
+            window.location.href = returnUrl;
         }
     },
 }

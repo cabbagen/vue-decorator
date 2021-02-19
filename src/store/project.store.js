@@ -6,10 +6,11 @@ export default {
     namespaced: true,
 
     state: {
-        state: 1,
         search: {
-            type: 0,
             name: '',
+            type: undefined,
+            state: undefined,
+            isMark: undefined,
         },
         projects: [],
         pagination: {
@@ -33,10 +34,10 @@ export default {
 
     actions: {
         getProjects(ctx) {
-            const { pagination, state, search } = ctx.state;
+            const { pagination, search } = ctx.state;
             const { pageSize, current } = pagination;
 
-            network.get('/proxy/cms/projects', { pageSize, pageNo: current - 1, state, ...search }).then(result => {
+            network.get('/proxy/cms/projects', { pageSize, pageNo: current - 1, ...search }).then(result => {
                 if (result.status !== 200) {
                     return;
                 }

@@ -6,15 +6,15 @@ export default {
     mixins: [prefix],
     components: {
         'a-icon': Icon,
-        'a-dropdown': Dropdown,
         'a-menu': Menu,
+        'a-dropdown': Dropdown,
         'a-menu-item': Menu.Item,
     },
     data: function() {
         return {
         };
     },
-    props: ['filters', 'selected'],
+    props: ['filters'],
     methods: {
         handleSelectFilterItem: function(item) {
             this.$emit('handleSelectFilterItem', item);

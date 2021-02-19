@@ -26,10 +26,10 @@ export default {
 
         handleInputEnter: function() {
             this.updateProjectState({
-                type: 0,
+                pagination: { current: 1 },
                 search: { name: this.name },
             });
             this.getProjects();
-        }
+        },
     },
 };

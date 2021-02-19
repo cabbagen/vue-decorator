@@ -3,7 +3,7 @@
         <common-header>
             <template v-slot:ch-custom-opecation>
                 <div class="common-header-search">
-                    <a-input v-model="name" style="width: 220px" placeholder="搜索项目" @on-enter="handleInputEnter">
+                    <a-input v-model="name" style="width: 220px" placeholder="搜索项目" @pressEnter="handleInputEnter">
                         <a-icon type="search" slot="suffix" />
                     </a-input>
                 </div>

@@ -39,8 +39,9 @@ export default {
         },
         handleModalOk: function(data) {
             this.handleModalCancel();
-            this.handleUpdateProject(Object.assign({ state: 2 }, data));
-            this.getProjects();
+            this.handleUpdateProject(Object.assign({ state: 2 }, data)).then(() => {
+                this.getProjects();
+            });
         },
         handleModalCancel: function() {
             this.modalVisible = false;

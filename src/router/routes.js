@@ -6,6 +6,9 @@ import Guide from '@/views/guide/index.vue';
 import UserCenter from '@/views/user-center/index.vue';
 
 const routes = [{
+    path: '/',
+    redirect: '/workbench/normal',
+},{
     path: '/workbench/:panel',
     name: 'home',
     component: Home,

@@ -50,7 +50,7 @@ export default {
             });
         },
         handleUpdateProject(_, payload = {}) {
-            network.post('/proxy/cms/project', payload).then(result => {
+            return network.post('/proxy/cms/project', payload).then(result => {
                 if (result.status !== 200) {
                     return;
                 }

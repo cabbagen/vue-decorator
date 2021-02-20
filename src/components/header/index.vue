@@ -27,7 +27,7 @@
                     </div>
                     <a-menu slot="overlay">
                         <a-menu-item v-for="(value, index) in menus" :key="index">
-                            <div :class="`${$prefix}-menu-item`">{{value.name}}</div>
+                            <div :class="`${$prefix}-menu-item`" @click="handleTriggerItemOpecation(value)">{{value.name}}</div>
                         </a-menu-item>
                     </a-menu>
                 </a-dropdown>

@@ -1,5 +1,5 @@
+import prefix from '@/mixins/prefix.mixin';
 import { Badge, Icon, Dropdown, Menu } from 'ant-design-vue';
-import prefix from '../../mixins/prefix.mixin';
 import { defaultMenus, defaultOpecations } from './config';
 
 export default {
@@ -18,4 +18,17 @@ export default {
             opecations: defaultOpecations,
         };
     },
+    methods: {
+        handleTriggerItemOpecation: function(item) {
+            if (item.key === 'layout') {
+                localStorage.removeItem('token');
+                window.location.href = '/login';
+                return;
+            }
+            if (item.key === 'user-center') {
+                this.$router.push('/user-center');
+                return;
+            }
+        },
+    }
 };

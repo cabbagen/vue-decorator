@@ -21,6 +21,7 @@ export default {
             return this.$route.params.projectId || '';
         },
         ...mapState('page', {
+            projectInfo: state => state.projectInfo,
             selectedPageId: state => state.selectedPageId,
             selectedPageModules: state => state.selectedPageModules,
         }),
@@ -33,8 +34,12 @@ export default {
             };
         }
     },
+    mounted: function() {
+        this.getCurrentProjectInfo({ projectId: this.projectId });
+        console.log(this.projectInfo)
+    },
     methods: {
-        ...mapActions('page', ['getPageModules', 'updatePageModule', 'removePageModule', 'sortPageModules']),
+        ...mapActions('page', ['getPageModules', 'updatePageModule', 'removePageModule', 'sortPageModules', 'getCurrentProjectInfo']),
 
         visibleMonitor: function(componentId, visible) {
             this.editedComponentIds = visible

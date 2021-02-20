@@ -1,6 +1,6 @@
 <template>
     <div :class="`${$prefix}-slider`">
-        <div :class="`${$prefix}-new-btn`">
+        <div :class="`${$prefix}-new-btn`" @click="handleCreateProject">
             <a-icon type="plus" />
             <span>新建项目</span>
         </div>

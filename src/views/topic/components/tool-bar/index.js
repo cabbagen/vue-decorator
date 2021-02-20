@@ -1,7 +1,7 @@
-import { mapState, mapActions } from 'vuex';
-import { Icon, message } from 'ant-design-vue';
 import prefix from '@/mixins/prefix.mixin.js';
 import CommonDecoration from '@/components/decoration/index.vue';
+import { mapState, mapActions } from 'vuex';
+import { Icon, message } from 'ant-design-vue';
 
 const defaultOpecations = [{
     type: 'edit',

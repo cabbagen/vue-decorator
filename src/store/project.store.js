@@ -4,7 +4,6 @@ import { checkType } from '@/utils/utils.js';
 
 export default {
     namespaced: true,
-
     state: {
         search: {
             name: '',

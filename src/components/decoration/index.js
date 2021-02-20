@@ -1,5 +1,5 @@
-import { Icon, Drawer } from 'ant-design-vue';
 import prefix from '@/mixins/prefix.mixin.js';
+import { Icon, Drawer } from 'ant-design-vue';
 
 export default {
     name: 'common-decoration',

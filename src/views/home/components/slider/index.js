@@ -1,5 +1,5 @@
-import { Icon } from 'ant-design-vue';
 import prefix from '@/mixins/prefix.mixin.js';
+import { Icon } from 'ant-design-vue';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
@@ -40,5 +40,8 @@ export default {
             this.getProjects();
             this.$router.push(`/workbench/${item.key}`);
         },
+        handleCreateProject: function() {
+            this.$emit('handleCreateProject');
+        }
     },
 };

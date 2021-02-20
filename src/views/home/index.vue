@@ -11,7 +11,7 @@
         </common-header>
         <div :class="`${$prefix}-content`">
             <div :class="`${$prefix}-content-left`">
-                <cp-slider />
+                <cp-slider @handleCreateProject="handleCreateProject" />
             </div>
             <div :class="`${$prefix}-content-right`">
                 <div :class="`${$prefix}-content-right-title`">
@@ -22,6 +22,12 @@
                 </div>
             </div>
         </div>
+        <cp-create-modal
+            title="新建项目"
+            :visible="modalVisible"
+            @handleModalOk="handleModalOk"
+            @handleModalCancel="handleModalCancel"
+        />
     </div>
 </template>
 

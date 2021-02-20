@@ -1,7 +1,7 @@
+import prefix from '@/mixins/prefix.mixin.js';
 import { mapState, mapActions, mapMutations } from 'vuex';
 import { Icon, Input, Tooltip, Dropdown, Menu } from 'ant-design-vue';
 import CreatePageModal from '../create-page-modal/index.vue';
-import prefix from '@/mixins/prefix.mixin.js';
 
 export default {
     name: 'view-topic-page-filter',

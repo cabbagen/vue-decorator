@@ -39,6 +39,9 @@
                 </a-dropdown>
             </div>
         </div>
+        <div :class="`${$prefix}-button`">
+            <p>自主建站平台</p>
+        </div>
         <create-page-modal v-bind="modalInfo" @handleModalOk="handleModalOk" @handleModalCancel="handleModalCancel" />
     </div>
 </template>

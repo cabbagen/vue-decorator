@@ -3,29 +3,37 @@ import { message } from 'ant-design-vue';
 
 export default {
     namespaced: true,
-
     state: {
         pages: [],
         selectedPageId: 0,
         selectedPageModules: [],
+        projectInfo: {},
     },
-
     mutations: {
         updatePages(state, pages) {
             state.pages = pages;
             state.selectedPageId = pages[0] ? pages[0].id : 0;
         },
-
         updateSelectedPageModules(state, selectedPageModules) {
             state.selectedPageModules = selectedPageModules;
         },
-
         handleSelectedPageChange(state, pageId) {
             state.selectedPageId = pageId;
-        }
+        },
+        updateCurrentProject(state, data) {
+            state.projectInfo = data;
+        },
     },
-
     actions: {
+        // 获取当前项目信息
+        getCurrentProjectInfo(ctx, payload) {
+            return Network.get(`/proxy/cms/project/${payload.projectId}`).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                ctx.commit('updateCurrentProject', result.data);
+            });
+        },
         // 获取页面列表
         getPages(ctx, payload = {}) {
             return Network.get(`/proxy/cms/page/${payload.projectId}`).then(result => {

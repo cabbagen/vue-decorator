@@ -1,13 +1,14 @@
+import Network from '@/utils/network';
+import prefix from '@/mixins/prefix.mixin';
+import { getQuery } from '@/utils/utils';
 import { Input, Button, message } from 'ant-design-vue';
-import { getQuery } from '../../utils/utils';
-import Network from '../../utils/network';
-import prefix from '../../mixins/prefix.mixin';
 
 export default {
     mixins: [prefix],
     name: 'view-login',
     components: {
-        'a-input': Input, 'a-button': Button,
+        'a-input': Input,
+        'a-button': Button,
     },
     data: function() {
         return {
@@ -32,7 +33,7 @@ export default {
             this.captcha = result.data;
         },
         async handleLogin() {
-            const { returnUrl = '' } = getQuery();
+            const { returnUrl = '/workbench/normal' } = getQuery();
             const { username, password, answer, captcha } = this;
 
             if (username === '' || password === '' || answer === '') {
@@ -46,6 +47,7 @@ export default {
                 this.getCaptchaInfo();
                 return;
             }
+            localStorage.setItem('userId', JSON.parse(result.data.rawResponse).id);
             localStorage.setItem('token', result.data.token);
 
             window.location.href = returnUrl;

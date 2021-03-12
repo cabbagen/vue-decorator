@@ -6,7 +6,7 @@
                 <a-form-model-item label="用户头像" :class="`${$prefix}-avatar-field`">
                     <a-upload
                         name="file"
-                        action="http://localhost:7000/proxy/handle/upload"
+                        :action="`${domain}/proxy/handle/upload`"
                         :show-upload-list="false"
                         :before-upload="beforeUpload"
                         :headers="uploadHeader"

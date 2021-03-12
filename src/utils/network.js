@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { message } from 'ant-design-vue';
+import { getDomain } from '../utils/utils';
 
-const domain = 'http://localhost:7000';
+const domain = getDomain();
 
 function getRequestHeader() {
     return {
-        app_key: 'AMSJJWELSW',
+        app: 'AMSJJWELSW',
         token: localStorage.getItem('token') || '',
     };
 }

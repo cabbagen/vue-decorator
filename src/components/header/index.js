@@ -22,7 +22,7 @@ export default {
         handleTriggerItemOpecation: function(item) {
             if (item.key === 'layout') {
                 localStorage.removeItem('token');
-                window.location.href = '/login';
+                this.$router.replace('/login');
                 return;
             }
             if (item.key === 'user-center') {

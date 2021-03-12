@@ -36,7 +36,6 @@ export default {
     },
     mounted: function() {
         this.getCurrentProjectInfo({ projectId: this.projectId });
-        console.log(this.projectInfo)
     },
     methods: {
         ...mapActions('page', ['getPageModules', 'updatePageModule', 'removePageModule', 'sortPageModules', 'getCurrentProjectInfo']),

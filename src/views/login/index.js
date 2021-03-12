@@ -50,7 +50,7 @@ export default {
             localStorage.setItem('userId', JSON.parse(result.data.rawResponse).id);
             localStorage.setItem('token', result.data.token);
 
-            window.location.href = returnUrl;
+            this.$router.replace(returnUrl);
         }
     },
 }

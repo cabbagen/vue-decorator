@@ -2,6 +2,7 @@ import Network from '@/utils/network.js';
 import prefix from '@/mixins/prefix.mixin.js';
 import CommonHeader from '@/components/header/index.vue';
 import { Button, FormModel, Input, Upload, message } from 'ant-design-vue';
+import { getDomain } from '../../utils/utils';
 
 export default {
     name: 'view-user-center',
@@ -16,6 +17,7 @@ export default {
     },
     data: function() {
         return {
+            domain: getDomain(),
             labelCol: { span: 4 },
             wrapperCol: { span: 14 },
             userInfo: null,
@@ -84,7 +86,7 @@ export default {
                 return;
             }
             message.success('头像上传成功');
-            this.userInfo = Object.assign({}, this.userInfo, { avatar: `http://localhost:7001/${info.file.response.data}` });
+            this.userInfo = Object.assign({}, this.userInfo, { avatar: `${getDomain()}/${info.file.response.data}` });
         },
     },
 }

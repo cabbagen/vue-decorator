@@ -2,6 +2,7 @@ import prefix from '@/mixins/prefix.mixin.js';
 import CommonDecoration from '@/components/decoration/index.vue';
 import { mapState, mapActions } from 'vuex';
 import { Icon, message } from 'ant-design-vue';
+import { getDomain } from '../../../../utils/utils';
 
 const defaultOpecations = [{
     type: 'edit',
@@ -48,7 +49,7 @@ export default {
                 return;
             }
             if (type === 'download') {
-                window.open("http://localhost:7001/cms/projects/download/" + this.projectId, '_blank');
+                window.open(`${getDomain()}/cms/projects/unAuth/download/${this.projectId}`, '_blank');
                 return;
             }
         },

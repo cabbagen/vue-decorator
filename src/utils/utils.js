@@ -9,3 +9,11 @@ export function getQuery(url) {
 export function checkType(params) {
     return Object.prototype.toString.call(params).slice(8, -1);
 }
+
+export function getDomain() {
+    return process.env.NODE_ENV === 'production' ? 'http://39.106.83.126/webapp/api' : 'http://localhost:7000';
+}
+
+export function getPrefix() {
+    return process.env.NODE_ENV === 'production' ? '/webapp/app/' : '/';
+}

@@ -35,6 +35,7 @@ export default {
         }
     },
     mounted: function() {
+        this.getPageModules();
         this.getCurrentProjectInfo({ projectId: this.projectId });
     },
     methods: {

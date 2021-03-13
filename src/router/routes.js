@@ -1,9 +1,3 @@
-import Home from '@/views/home/index.vue';
-import Login from '@/views/login/index.vue';
-import Topic from '@/views/topic/index.vue';
-import About from '@/views/about/index.vue';
-import Guide from '@/views/guide/index.vue';
-import UserCenter from '@/views/user-center/index.vue';
 
 const routes = [{
     path: '/',
@@ -11,27 +5,27 @@ const routes = [{
 },{
     path: '/workbench/:panel',
     name: 'home',
-    component: Home,
+    component: () => import('@/views/home/index.vue'),
 }, {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: () => import('@/views/login/index.vue'),
 }, {
     path: '/topic/:projectId',
     name: 'topic',
-    component: Topic,
+    component: () => import('@/views/topic/index.vue'),
 }, {
     path: '/user-center',
     name: 'user-center',
-    component: UserCenter,
+    component: () => import('@/views/user-center/index.vue'),
 }, {
     path: '/about',
     name: 'about',
-    component: About,
+    component: () => import('@/views/about/index.vue'),
 }, {
     path: '/guide',
     name: 'guide',
-    component: Guide,
+    component: () => import('@/views/guide/index.vue'),
 }];
 
 export default routes;

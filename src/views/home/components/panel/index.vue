@@ -18,6 +18,7 @@
                     <span v-if="project.state > -1" @click="handleOpetationItemByMark(project)">{{`${project.isMark === 2 ? '取消' : ''}标星`}}</span>
                     <span v-if="project.state > -1" @click="handleOpetationItemByPublish(project)">{{`${project.state === 1 ? '下线' : '上线'}`}}</span>
                     <span @click="handleOpetationItemByDelete(project)">{{`${project.state === -1 ? '恢复' : '删除'}`}}</span>
+                    <span v-if="project.state > -1" @click="handleProjectPreview(project)">查看</span>
                 </div>
             </a-table>
         </div>

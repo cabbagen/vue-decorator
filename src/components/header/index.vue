@@ -11,7 +11,7 @@
         <div :class="`${$prefix}-right`">
             <div :class="`${$prefix}-opecation-btns`">
                 <div v-for="(item, index) in opecations" :key="index">
-                    <span>{{item.name}}</span>
+                    <router-link :to="item.link">{{item.name}}</router-link>
                 </div>
             </div>
             <div :class="`${$prefix}-user-notice`">

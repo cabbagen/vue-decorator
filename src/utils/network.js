@@ -39,4 +39,31 @@ const network = {
     },
 };
 
+export function downloadFile(path, params, fileName, mimeType) {
+    const options = {
+        method: 'get',
+        url: domain + path,
+        params,
+        headers: getRequestHeader(),
+        responseType: 'blob',
+    };
+
+    return axios(options).then(result => {
+        const blob = new Blob([result.data], { type: mimeType });
+
+        if (window.navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, fileName);
+        } else {
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
 export default network;

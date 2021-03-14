@@ -33,8 +33,8 @@ export default {
         },
         stateFormat: function(state) {
             const stateMap = {
-                '1': '已上线',
-                '2': '未上线',
+                '1': '已发布',
+                '2': '未发布',
                 '-1': '已删除',
             };
             return stateMap[state] || '';

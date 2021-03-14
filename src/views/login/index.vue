@@ -5,10 +5,10 @@
                 <img src="https://file.iviewui.com/dev-dist/5fbd2906a125dd0ba4fbd502263ca524.png" alt="logo" />
             </div>
             <div :class="`${$prefix}-form-row`">
-                <a-input placeholder="请输入用户名" size="large" v-model="username" />
+                <a-input placeholder="请输入用户名: example" size="large" v-model="username" />
             </div>
             <div :class="`${$prefix}-form-row`">
-                <a-input placeholder="请输入用户密码" size="large" v-model="password" />
+                <a-input placeholder="请输入用户密码: 123456" size="large" v-model="password" />
             </div>
             <div :class="[`${$prefix}-form-row`, 'captcha']">
                 <a-input placeholder="验证码" v-model="answer" size="large" style="width: 150px" />

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import network from '@/utils/network';
 import prefix from '@/mixins/prefix.mixin.js';
-import { getPrefix } from '@/utils/utils';
+import { getStaticDomain } from '@/utils/utils';
 import { Table } from 'ant-design-vue';
 import { mapState, mapActions, mapMutations } from 'vuex';
 import PanelFilter from '../filter/index.vue';
@@ -116,7 +116,7 @@ export default {
             });
         },
         handleProjectPreview: function(record) {
-            window.open(`${getPrefix()}static/preview/${record.id}/index.html`, '_blank');
+            window.open(`${getStaticDomain()}/preview/${record.id}/index.html`, '_blank');
         }
     }
 }

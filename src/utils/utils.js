@@ -14,6 +14,10 @@ export function getDomain() {
     return process.env.NODE_ENV === 'production' ? 'http://39.106.83.126/webapp/api' : 'http://localhost:7000';
 }
 
+export function getStaticDomain() {
+    return process.env.NODE_ENV === 'production' ? 'http://39.106.83.126/webapp/static' : 'http://localhost:7000';
+}
+
 export function getPrefix() {
     return process.env.NODE_ENV === 'production' ? '/webapp/app/' : '/';
 }

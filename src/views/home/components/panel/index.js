@@ -116,7 +116,7 @@ export default {
             });
         },
         handleProjectPreview: function(record) {
-            window.open(`${getPrefix()}static/${record.id}/index.html`, '_blank');
+            window.open(`${getPrefix()}static/preview/${record.id}/index.html`, '_blank');
         }
     }
 }

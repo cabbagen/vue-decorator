@@ -15,6 +15,9 @@ module.exports = {
         externals: {
             vue: 'Vue',
         },
+        devServer: {
+            disableHostCheck: true,
+        }
     },
     publicPath: process.env.NODE_ENV === 'production' ? '/webapp/app/' : '/',
 };

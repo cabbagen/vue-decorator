@@ -1,22 +1,24 @@
-import prefix from '@/mixins/prefix.mixin.js';
-import CommonDecoration from '@/components/decoration/index.vue';
 import { mapState, mapActions } from 'vuex';
 import { Icon, message } from 'ant-design-vue';
-import { downloadFile } from '@/utils/network';
+
+import prefix from '@/mixins/prefix.mixin.js';
+import network from '@/utils/network';
+import CommonDecoration from '@/components/decoration/index.vue';
+import CreateTemplateModal from '../create-template-modal/index.vue';
 
 const defaultOpecations = [{
     type: 'edit',
     icon: 'edit',
     text: '网站编辑',
 }, {
-    type: 'download',
-    icon: 'cloud-download',
-    text: '源码下载',
-},/* {
+    type: 'save',
+    icon: 'save',
+    text: '存为模板',
+}, {
     type: 'setting',
     icon: 'setting',
     text: '网站设置',
-}*/];
+}];
 
 export default {
     name: 'view-topic-tool-bar',
@@ -24,6 +26,7 @@ export default {
     components: {
         'a-icon': Icon,
         'commom-decoration': CommonDecoration,
+        'create-template-modal': CreateTemplateModal,
     },
     computed: {
         projectId: function() {
@@ -36,6 +39,7 @@ export default {
     },
     data: function() {
         return {
+            modalVisible: false,
             decorationVisible: false,
             opecations: defaultOpecations,
         };
@@ -48,9 +52,13 @@ export default {
                 this.decorationVisible = true;
                 return;
             }
-            if (type === 'download') {
-                downloadFile(`/proxy/cms/projects/download/${this.projectId}`, {}, '源文件.zip', 'application/octet-stream');
+            if (type === 'save') {
+                this.modalVisible = true;
                 return;
+            }
+            if (type === 'setting') {
+                console.log('网站设置');
+                message.info('该功能暂未开放');
             }
         },
         hanleDecoraionCancel: function() {
@@ -68,6 +76,20 @@ export default {
                 content: JSON.stringify(item.struct),
             };
             this.createPageModule(params);
-        }
+        },
+        handleTemplateModalOk: function(data) {
+            const payload = Object.assign({}, data, { projectId: parseInt(this.projectId, 10) });
+
+            network.post('/proxy/cms/template/save', payload).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                message.success('模板保存成功');
+                this.modalVisible = false;
+            });
+        },
+        handleTemplateModalCancel: function() {
+            this.modalVisible = false;
+        },
     }
 }

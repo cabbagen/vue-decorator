@@ -21,7 +21,7 @@ export default {
     methods: {
         handleTriggerItemOpecation: function(item) {
             if (item.key === 'layout') {
-                localStorage.removeItem('token');
+                sessionStorage.removeItem('token');
                 this.$router.replace('/login');
                 return;
             }
@@ -30,5 +30,8 @@ export default {
                 return;
             }
         },
+        handleToHome: function() {
+            window.location.href = '/workbench/normal';
+        }
     }
 };

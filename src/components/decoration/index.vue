@@ -1,10 +1,7 @@
 <template>
-    <a-drawer
-        width="460"
-        title="装饰选项卡"
-        :mask="false"
-        :visible="visible"
-        :get-container="getContainer"
+    <a-drawer width="460"
+        title="装饰选项卡" :mask="false"
+        :visible="visible" :get-container="getContainer"
         :wrapClassName="`${$prefix}-drawer-wrap`"
         @close="handleCloseDecoration"
     >

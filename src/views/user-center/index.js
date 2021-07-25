@@ -1,8 +1,7 @@
-import Network from '@/utils/network.js';
+import network from '@/utils/network.js';
 import prefix from '@/mixins/prefix.mixin.js';
 import CommonHeader from '@/components/header/index.vue';
 import { Button, FormModel, Input, Upload, message } from 'ant-design-vue';
-import { getDomain } from '../../utils/utils';
 
 export default {
     name: 'view-user-center',
@@ -17,13 +16,13 @@ export default {
     },
     data: function() {
         return {
-            domain: getDomain(),
+            domain: process.env.VUE_APP_DOMAIN,
             labelCol: { span: 4 },
             wrapperCol: { span: 14 },
             userInfo: null,
             uploadHeader: {
                 app_key: 'AMSJJWELSW',
-                token: localStorage.getItem('token'),
+                token: sessionStorage.getItem('token'),
             },
             rules: {
                 nickname: [{ required: true, message: '请填写用户昵称', trigger: 'blur' }],
@@ -43,9 +42,9 @@ export default {
     },
     methods: {
         handleUpdateUserInfo: function() {
-            const userId = localStorage.getItem('userId') || '';
+            const userId = sessionStorage.getItem('userId') || '';
 
-            Network.get(`/proxy/cms/user/${userId}`).then(result => {
+            network.get(`/proxy/cms/user/${userId}`).then(result => {
                 if (result.status !== 200) {
                     message.error(result.msg);
                     return;
@@ -54,7 +53,7 @@ export default {
             });
         },
         onFormSubmit: function() {
-            Network.post('/proxy/cms/user', this.userInfo).then(result => {
+            network.post('/proxy/cms/user', this.userInfo).then(result => {
                 if (result.status !== 200) {
                     message.error(result.msg);
                     return;
@@ -86,7 +85,7 @@ export default {
                 return;
             }
             message.success('头像上传成功');
-            this.userInfo = Object.assign({}, this.userInfo, { avatar: `${getDomain()}/${info.file.response.data}` });
+            this.userInfo = Object.assign({}, this.userInfo, { avatar: `${process.env.VUE_APP_DOMAIN}/${info.file.response.data}` });
         },
     },
 }

@@ -1,7 +1,6 @@
 import moment from 'moment';
 import network from '@/utils/network';
 import prefix from '@/mixins/prefix.mixin.js';
-import { getStaticDomain } from '@/utils/utils';
 import { Table } from 'ant-design-vue';
 import { mapState, mapActions, mapMutations } from 'vuex';
 import PanelFilter from '../filter/index.vue';
@@ -88,9 +87,6 @@ export default {
             }];
             return columns;
         },
-        handleProjectClick: function(item) {
-            this.$router.push({ path: '/topic', query: { projectId: item.id }});
-        },
         handlePaginationChange: function(pagination) {
             this.updateProjectState({
                 pagination: {
@@ -116,7 +112,7 @@ export default {
             });
         },
         handleProjectPreview: function(record) {
-            window.open(`${getStaticDomain()}/preview/${record.id}/index.html`, '_blank');
+            window.open(`${process.env.VUE_APP_STATIC_DOMAIN}/preview/${record.id}/index.html`, '_blank');
         }
     }
 }

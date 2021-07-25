@@ -1,19 +1,23 @@
 import axios from 'axios';
+import { appkey } from '@/utils/const';
 import { message } from 'ant-design-vue';
-import { getDomain } from '../utils/utils';
 
-const domain = getDomain();
+const domain = process.env.VUE_APP_DOMAIN;
 
 function getRequestHeader() {
     return {
-        app: 'AMSJJWELSW',
-        token: localStorage.getItem('token') || '',
+        ['app-key']: appkey,
+        token: sessionStorage.getItem('token') || '',
     };
 }
 
 function handleRequestResponseSuccess(result) {
     const { status, msg } = result.data;
 
+    if (msg && msg.indexOf('token') > -1 && status === 500) {
+        window.location.href = process.env.VUE_APP_ROUTER_PREFIX + 'login';
+        return;
+    }
     if (status !== 200) {
         message.error(msg);
     }
@@ -38,32 +42,5 @@ const network = {
             .then(handleRequestResponseSuccess, handleRequestResponseException);
     },
 };
-
-export function downloadFile(path, params, fileName, mimeType) {
-    const options = {
-        method: 'get',
-        url: domain + path,
-        params,
-        headers: getRequestHeader(),
-        responseType: 'blob',
-    };
-
-    return axios(options).then(result => {
-        const blob = new Blob([result.data], { type: mimeType });
-
-        if (window.navigator.msSaveOrOpenBlob) {
-            navigator.msSaveBlob(blob, fileName);
-        } else {
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = fileName;
-            link.click();
-            window.URL.revokeObjectURL(link.href);
-        }
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-}
 
 export default network;

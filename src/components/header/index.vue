@@ -1,7 +1,7 @@
 <template>
     <div :class="`${$prefix}-container`">
         <div :class="`${$prefix}-left`">
-            <div :class="`${$prefix}-logo`">
+            <div :class="`${$prefix}-logo`" @click="handleToHome">
                 <img src="https://www.processon.com/assets/imgs/logo_small_.png" alt="logo" />
             </div>
             <div :class="`${$prefix}-custom-opecation`">

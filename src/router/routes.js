@@ -26,6 +26,14 @@ const routes = [{
     path: '/guide',
     name: 'guide',
     component: () => import('@/views/guide/index.vue'),
-}];
+}, {
+    path: '/templates',
+    name: 'templates',
+    component: () => import('@/views/templates/index.vue'),
+}, /*{
+    path: '/materials',
+    name: 'materials',
+    component: () => import('@/views/materials/index.vue'),
+}*/];
 
 export default routes;

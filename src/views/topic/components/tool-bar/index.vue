@@ -11,6 +11,12 @@
             @onCancel="hanleDecoraionCancel"
             @onAddModule="handleAddModule"
         />
+        <create-template-modal
+            title="项目保存为模板"
+            :visible="modalVisible"
+            @handleModalOk="handleTemplateModalOk"
+            @handleModalCancel="handleTemplateModalCancel"
+        />
     </div>
 </template>
 

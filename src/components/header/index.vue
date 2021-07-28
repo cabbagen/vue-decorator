@@ -22,7 +22,7 @@
             <div :class="`${$prefix}-user-meun`">
                 <a-dropdown placement="bottomRight">
                     <div :class="`${$prefix}-user-icon`">
-                        <img alt="user" src="https://cloudfront.modao.cc/uploads4/avatars/160/1608603/forum_132.jpeg" />
+                        <img alt="user" :src="userInfo.avatar" />
                         <a-icon type="down" />
                     </div>
                     <a-menu slot="overlay">

@@ -15,7 +15,7 @@ function handleRequestResponseSuccess(result) {
     const { status, msg } = result.data;
 
     if (msg && msg.indexOf('token') > -1 && status === 500) {
-        window.location.href = process.env.VUE_APP_ROUTER_PREFIX + 'login';
+        window.location.href = `${process.env.VUE_APP_ROUTER_PREFIX}login?returnUrl=${window.location.href}`;
         return;
     }
     if (status !== 200) {

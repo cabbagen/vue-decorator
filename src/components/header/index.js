@@ -1,6 +1,8 @@
 import prefix from '@/mixins/prefix.mixin';
-import { Badge, Icon, Dropdown, Menu } from 'ant-design-vue';
+import { Badge, Icon, Dropdown, Menu, message } from 'ant-design-vue';
 import { defaultMenus, defaultOpecations } from './config';
+
+import network from '@/utils/network.js';
 
 export default {
     mixins: [prefix],
@@ -16,9 +18,24 @@ export default {
         return {
             menus: defaultMenus,
             opecations: defaultOpecations,
+            userInfo: {},
         };
     },
+    mounted: function() {
+        this.handleFetchUserInfo();
+    },
     methods: {
+        handleFetchUserInfo: function() {
+            const userId = sessionStorage.getItem('userId') || '';
+
+            network.get(`/proxy/cms/user/${userId}`).then(result => {
+                if (result.status !== 200) {
+                    message.error(result.msg);
+                    return;
+                }
+                this.userInfo = result.data;
+            });
+        },
         handleTriggerItemOpecation: function(item) {
             if (item.key === 'layout') {
                 sessionStorage.removeItem('token');

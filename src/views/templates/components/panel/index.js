@@ -1,4 +1,4 @@
-import { Icon, Input } from 'ant-design-vue';
+import { Icon, Input, Empty } from 'ant-design-vue';
 
 import network from '@/utils/network';
 import prefix from '@/mixins/prefix.mixin.js';
@@ -8,6 +8,7 @@ export default {
     name: 'view-template-panel',
     components: {
         'a-icon': Icon,
+        'a-empty': Empty,
         'a-input-search': Input.Search,
     },
     data: function() {
@@ -53,7 +54,12 @@ export default {
             });
         },
         handleCreateProjectByTemplate: function(item) {
-            console.log('模板创建');
+            network.get('/proxy/cms/projects/byTemplates', { templateId: item.id }).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                this.$router.push(`/topic/${result.data.id}`);
+            });
         },
         handleEditTemplate: function(item) {
             this.$router.push(`/topic/${item.projectId}`);

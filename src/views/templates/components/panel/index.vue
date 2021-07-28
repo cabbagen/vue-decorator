@@ -11,10 +11,13 @@
             />
         </div>
         <div :class="`${$prefix}-content`">
-            <div :class="`${$prefix}-column-content`" v-for="(column, index) in columns" :key="index">
+            <div v-if="templates.length === 0" :class="`${$prefix}-content-empty`">
+                <a-empty :description="'暂无数据模板'"></a-empty>
+            </div>
+            <div v-else :class="`${$prefix}-column-content`" v-for="(column, index) in columns" :key="index">
                 <div :class="`${$prefix}-template-item`" :key="tIndex" v-for="(tItem, tIndex) in column">
                     <div :class="`${$prefix}-template-cover`">
-                        <img :src="tItem.cover" />
+                        <img :src="tItem.cover || 'https://imgpub.chuangkit.com/designTemplate/2021/07/18/fd705879-9ffd-4610-94d3-31d8fa9e7b51_thumb?v=1626606000000&x-oss-process=image/resize,w_600/sharpen,100/format,webp'" />
                     </div>
                     <div :class="`${$prefix}-template-description`">
                         <span>{{tItem.name}}</span>

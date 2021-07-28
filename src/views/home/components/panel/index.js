@@ -1,5 +1,4 @@
 import moment from 'moment';
-import network from '@/utils/network';
 import prefix from '@/mixins/prefix.mixin.js';
 import { Table } from 'ant-design-vue';
 import { mapState, mapActions, mapMutations } from 'vuex';
@@ -102,7 +101,6 @@ export default {
         },
         handleOpetationItemByPublish: function(record) {
             this.handleUpdateProject({ id: record.id, state: record.state === 1 ? 2 : 1 }).then(() => {
-                network.get(`/proxy/cms/projects/${record.state === 1 ? 'remove' : 'generate'}/${record.id}`);
                 this.getProjects();
             });
         },
@@ -112,7 +110,7 @@ export default {
             });
         },
         handleProjectPreview: function(record) {
-            window.open(`${process.env.VUE_APP_STATIC_DOMAIN}/preview/${record.id}/index.html`, '_blank');
+            window.open(`${process.env.VUE_APP_TEMP_PREV_DOMAIN}/preview/${record.id}/index.html`, '_blank');
         }
     }
 }

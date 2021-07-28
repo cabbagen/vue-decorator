@@ -38,10 +38,10 @@ export default {
         };
     },
     mounted: function() {
-        this.handleUpdateUserInfo();
+        this.handleFetchUserInfo();
     },
     methods: {
-        handleUpdateUserInfo: function() {
+        handleFetchUserInfo: function() {
             const userId = sessionStorage.getItem('userId') || '';
 
             network.get(`/proxy/cms/user/${userId}`).then(result => {
@@ -59,7 +59,7 @@ export default {
                     return;
                 }
                 message.success('修改成功');
-                this.handleUpdateUserInfo();
+                this.handleFetchUserInfo();
             });
         },
         beforeUpload: function(file) {

@@ -44,8 +44,24 @@ export default {
             opecations: defaultOpecations,
         };
     },
+
+    mounted: function() {
+        this.handleFetchProjectInfo();
+    },
+
     methods: {
         ...mapActions('page', ['createPageModule']),
+
+        handleFetchProjectInfo: function() {
+            network.get(`/proxy/cms/project/${this.projectId}`).then(result => {
+                if (result.status !== 200) {
+                    return;
+                }
+                if (result.data.templateId > 0) {
+                    this.opecations = this.opecations.filter(item => item.type === 'edit');
+                }
+            });
+        },
 
         handleOpecationItem: function(type) {
             if (type === 'edit') {

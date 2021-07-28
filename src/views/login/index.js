@@ -51,6 +51,10 @@ export default {
             sessionStorage.setItem('userId', JSON.parse(result.data.rawResponse).id);
             sessionStorage.setItem('token', result.data.token);
 
+            if (/^http/.test(returnUrl)) {
+                window.location.href = returnUrl;
+                return;
+            }
             this.$router.replace(returnUrl);
         }
     },

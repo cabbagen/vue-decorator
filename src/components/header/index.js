@@ -48,7 +48,7 @@ export default {
             }
         },
         handleToHome: function() {
-            window.location.href = '/workbench/normal';
+            window.location.href = process.env.VUE_APP_ROUTER_PREFIX + 'workbench/normal';
         }
     }
 };

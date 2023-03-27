@@ -1,24 +1,14 @@
-# cms-server
+## vue-decorator
+---
 
-## Project setup
-```
-yarn install
-```
+#### 操作演示
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+<video width="320" controls loop>
+    <source src="./resource/record.webm" type="video/webm">
+</video>
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### 预览
+
+![预览](./resource/prev.png)

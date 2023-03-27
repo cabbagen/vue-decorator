@@ -1,7 +1,7 @@
 ## vue-decorator
 ---
 
-#### 操作演示
+#### 操作演示 （[查看视频](./resource/record.webm)）
 
 <video width="320" controls loop>
     <source src="./resource/record.webm" type="video/webm">

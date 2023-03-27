@@ -5,6 +5,7 @@
 
 <video width="320" controls loop>
     <source src="./resource/record.webm" type="video/webm">
+    <a href="./resource/record.webm" target="_blank">查看视频</a>
 </video>
 
 

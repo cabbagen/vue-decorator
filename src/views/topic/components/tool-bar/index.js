@@ -1,8 +1,9 @@
 import { mapState, mapActions } from 'vuex';
 import { Icon, message } from 'ant-design-vue';
 
-import prefix from '@/mixins/prefix.mixin.js';
 import network from '@/utils/network';
+import prefix from '@/mixins/prefix.mixin.js';
+
 import CommonDecoration from '@/components/decoration/index.vue';
 import CreateTemplateModal from '../create-template-modal/index.vue';
 
@@ -53,8 +54,8 @@ export default {
         ...mapActions('page', ['createPageModule']),
 
         handleFetchProjectInfo: function() {
-            network.get(`/proxy/cms/project/${this.projectId}`).then(result => {
-                if (result.status !== 200) {
+            network.get(`/cms/project/${this.projectId}`).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 if (result.data.templateId > 0) {
@@ -96,8 +97,8 @@ export default {
         handleTemplateModalOk: function(data) {
             const payload = Object.assign({}, data, { projectId: parseInt(this.projectId, 10) });
 
-            network.post('/proxy/cms/template/save', payload).then(result => {
-                if (result.status !== 200) {
+            network.post('/cms/template/save', payload).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('模板保存成功');

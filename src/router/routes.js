@@ -3,32 +3,32 @@ const routes = [{
     path: '/',
     redirect: '/workbench/normal',
 },{
-    path: '/workbench/:panel',
     name: 'home',
+    path: '/workbench/:panel',
     component: () => import('@/views/home/index.vue'),
 }, {
-    path: '/login',
     name: 'login',
+    path: '/login',
     component: () => import('@/views/login/index.vue'),
 }, {
-    path: '/topic/:projectId',
     name: 'topic',
+    path: '/topic/:projectId',
     component: () => import('@/views/topic/index.vue'),
 }, {
-    path: '/user-center',
     name: 'user-center',
+    path: '/user-center',
     component: () => import('@/views/user-center/index.vue'),
 }, {
-    path: '/about',
     name: 'about',
+    path: '/about',
     component: () => import('@/views/about/index.vue'),
 }, {
-    path: '/guide',
     name: 'guide',
+    path: '/guide',
     component: () => import('@/views/guide/index.vue'),
 }, {
-    path: '/templates',
     name: 'templates',
+    path: '/templates',
     component: () => import('@/views/templates/index.vue'),
 }, /*{
     path: '/materials',

@@ -12,7 +12,7 @@
             </div>
             <div :class="[`${$prefix}-form-row`, 'captcha']">
                 <a-input placeholder="验证码" v-model="answer" size="large" style="width: 150px" />
-                <div @click="getCaptchaInfo">
+                <div @click="getCaptchaInfo" v-if="captcha.b64s">
                     <img :src="captcha.b64s" alt="captcha" />
                 </div>
             </div>

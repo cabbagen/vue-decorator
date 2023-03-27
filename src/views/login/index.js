@@ -25,12 +25,15 @@ export default {
     },
     methods: {
         async getCaptchaInfo() {
-            const result = await network.get('/gateway/captcha');
+            const result = await network.get('/cms/captcha');
 
-            if (result.status !== 200) {
+            if (result.code !== 100200) {
                 return;
             }
-            this.captcha = result.data;
+            this.captcha = {
+                b64s: result.data.b64s,
+                captchaId: result.data.captchaId,
+            };
         },
         async handleLogin() {
             const { returnUrl = '/workbench/normal' } = getQuery();
@@ -41,14 +44,14 @@ export default {
                 return;
             }
 
-            const result = await network.post('/gateway/login', { username, password, answer, captchaId: captcha.captchaId });
-            
+            const result = await network.post('/cms/login', { username, password, answer, captchaId: captcha.captchaId });
+
             if (!result.data) {
                 this.getCaptchaInfo();
                 return;
             }
 
-            sessionStorage.setItem('userId', JSON.parse(result.data.rawResponse).id);
+            sessionStorage.setItem('userId', result.data.userInfo.id);
             sessionStorage.setItem('token', result.data.token);
 
             if (/^http/.test(returnUrl)) {

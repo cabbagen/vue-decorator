@@ -36,8 +36,8 @@ export default {
             const { pagination, search } = ctx.state;
             const { pageSize, current } = pagination;
 
-            network.get('/proxy/cms/projects', { pageSize, pageNo: current - 1, ...search }).then(result => {
-                if (result.status !== 200) {
+            network.get('/cms/projects', { pageSize, pageNo: current - 1, ...search }).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 const data = {
@@ -50,8 +50,8 @@ export default {
             });
         },
         handleUpdateProject(_, payload = {}) {
-            return network.post('/proxy/cms/project', payload).then(result => {
-                if (result.status !== 200) {
+            return network.post('/cms/project', payload).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('操作成功');

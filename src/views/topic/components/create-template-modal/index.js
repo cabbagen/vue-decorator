@@ -1,6 +1,6 @@
 import { Icon, Input, Modal, Select } from 'ant-design-vue';
-import prefix from '@/mixins/prefix.mixin.js';
 import network from '@/utils/network';
+import prefix from '@/mixins/prefix.mixin.js';
 
 const defaultFields = [{
     field: 'name',
@@ -27,7 +27,7 @@ const defaultFields = [{
     props: {
         placeholder: '请填写备注',
         autoSize: {
-            minRows: 4, maxRows: 6 
+            minRows: 4, maxRows: 6
         },
     },
 }];
@@ -77,8 +77,8 @@ export default {
             this.$emit('handleModalCancel');
         },
         handleCategorySearch: function(value = '') {
-            network.get('/proxy/cms/template/categories/name', { search: value }).then(result => {
-                if (result.status !== 200) {
+            network.get('/cms/template/categories/name', { search: value }).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 this.categories = result.data;

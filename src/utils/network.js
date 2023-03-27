@@ -1,25 +1,23 @@
 import axios from 'axios';
-import { appkey } from '@/utils/const';
 import { message } from 'ant-design-vue';
 
-const domain = process.env.VUE_APP_DOMAIN;
+// const domain = process.env.VUE_APP_DOMAIN;
+
+const domain = '/api';
 
 function getRequestHeader() {
     return {
-        ['app-key']: appkey,
-        token: sessionStorage.getItem('token') || '',
+        Authorization: sessionStorage.getItem('token') || '',
     };
 }
 
 function handleRequestResponseSuccess(result) {
-    const { status, msg } = result.data;
-
-    if (msg && msg.indexOf('token') > -1 && status === 500) {
+    if (result.data.code === 100401) {
         window.location.href = `${process.env.VUE_APP_ROUTER_PREFIX}login?returnUrl=${window.location.href}`;
         return;
     }
-    if (status !== 200) {
-        message.error(msg);
+    if (result.data.code !== 100200) {
+        message.error(result.data.message);
     }
     return result.data;
 }

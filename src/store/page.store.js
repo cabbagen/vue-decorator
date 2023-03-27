@@ -27,8 +27,8 @@ export default {
     actions: {
         // 获取当前项目信息
         getCurrentProjectInfo(ctx, payload) {
-            return network.get(`/proxy/cms/project/${payload.projectId}`).then(result => {
-                if (result.status !== 200) {
+            return network.get(`/cms/project/${payload.projectId}`).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 ctx.commit('updateCurrentProject', result.data);
@@ -36,8 +36,8 @@ export default {
         },
         // 获取页面列表
         getPages(ctx, payload = {}) {
-            return network.get(`/proxy/cms/page/${payload.projectId}`).then(result => {
-                if (result.status !== 200) {
+            return network.get(`/cms/page/${payload.projectId}`).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 const pages = result.data.map(item => {
@@ -49,8 +49,8 @@ export default {
 
         // 编辑、新建页面
         editPage(ctx, payload) {
-            network.post('/proxy/cms/page', payload).then((result) => {
-                if (result.status !== 200) {
+            network.post('/cms/page', payload).then((result) => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('操作成功');
@@ -66,8 +66,8 @@ export default {
 
         // 删除页面
         removePage(ctx, payload) {
-            network.del(`/proxy/cms/page/${payload.id}`).then((result) => {
-                if (result.status !== 200) {
+            network.del(`/cms/page/${payload.id}`).then((result) => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('删除成功');
@@ -84,8 +84,8 @@ export default {
             if (ctx.state.selectedPageId === 0) {
                 return;
             }
-            return network.get(`/proxy/cms/module/${ctx.state.selectedPageId}`).then(result => {
-                if (result.status !== 200) {
+            return network.get(`/cms/module/${ctx.state.selectedPageId}`).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 const modules = result.data.map(item => {
@@ -97,8 +97,8 @@ export default {
 
         // 添加装修模块
         createPageModule(ctx, payload) {
-            network.post('/proxy/cms/module', payload).then((result) => {
-                if (result.status !== 200) {
+            network.post('/cms/module', payload).then((result) => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('操作成功');
@@ -108,30 +108,30 @@ export default {
 
         // 编辑装修模块
         updatePageModule(ctx, payload) {
-            network.post('/proxy/cms/module', payload).then((result) => {
-                if (result.status !== 200) {
+            network.post('/cms/module', payload).then((result) => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('操作成功');
                 ctx.dispatch('getPageModules');
             });
         },
-        
+
         // 删除装修模块
         removePageModule(ctx, payload) {
-            network.del(`/proxy/cms/module/${payload.componentId}`).then((result) => {
-                if (result.status !== 200) {
+            network.del(`/cms/module/${payload.componentId}`).then((result) => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('删除成功');
                 return ctx.dispatch('getPageModules');
             });
         },
-        
+
         // 装修模块排序
         sortPageModules(ctx, payload) {
-            network.post('/proxy/cms/module/sort', payload).then((result) => {
-                if (result.status !== 200) {
+            network.post('/cms/module/sort', payload).then((result) => {
+                if (result.code !== 100200) {
                     return;
                 }
                 message.success('操作成功');

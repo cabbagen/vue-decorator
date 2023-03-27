@@ -44,8 +44,8 @@ export default {
         handleFetchUserInfo: function() {
             const userId = sessionStorage.getItem('userId') || '';
 
-            network.get(`/proxy/cms/user/${userId}`).then(result => {
-                if (result.status !== 200) {
+            network.get(`/user-service/user/${userId}`).then(result => {
+                if (result.code !== 100200) {
                     message.error(result.msg);
                     return;
                 }
@@ -53,8 +53,8 @@ export default {
             });
         },
         onFormSubmit: function() {
-            network.post('/proxy/cms/user', this.userInfo).then(result => {
-                if (result.status !== 200) {
+            network.post('/user-service/user/save', this.userInfo).then(result => {
+                if (result.code !== 100200) {
                     message.error(result.msg);
                     return;
                 }
@@ -80,8 +80,8 @@ export default {
             if (info.file.status !== 'done') {
                 return;
             }
-            if (!info.file.response || info.file.response.status !== 200) {
-                message.error(info.file.response.msg);
+            if (!info.file.response || info.file.response.code !== 100200) {
+                message.error(info.file.response.message);
                 return;
             }
             message.success('头像上传成功');

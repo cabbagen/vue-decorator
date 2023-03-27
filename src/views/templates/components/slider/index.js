@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         handleGetTemplateCategories: function() {
-            network.get('/proxy/cms/template/categories/name').then(result => {
+            network.get('/cms/template/categories/name').then(result => {
                 this.categories = result.data || [];
             });
         },

@@ -1,5 +1,5 @@
 import prefix from '@/mixins/prefix.mixin.js';
-import { Icon, Drawer } from 'ant-design-vue';
+import { Icon, Drawer, Tooltip } from 'ant-design-vue';
 
 export default {
     name: 'common-decoration',
@@ -7,10 +7,11 @@ export default {
     components: {
         'a-icon': Icon,
         'a-drawer': Drawer,
+        'a-tool-tip': Tooltip,
     },
     data: function() {
         return {
-            groupType: '',
+            groupType: 'base',
             groups: window.ATopic.groups.slice(),
             components: window.ATopic.components.slice(),
         };
@@ -22,7 +23,7 @@ export default {
                 return this.components;
             }
             const types = this.groups.find(item => item.type === this.groupType).components.map(item => item.type);
-            return this.components.filter(item => types.indexOf(item.type) > -1);
+            return types.map((type) => this.components.find((item) => item.type === type));
         },
     },
     methods: {

@@ -8,10 +8,10 @@ export default {
     mixins: [prefix],
     name: 'common-header',
     components: {
+        'a-menu': Menu,
         'a-icon': Icon,
         'a-badge': Badge,
         'a-dropdown': Dropdown,
-        'a-menu': Menu,
         'a-menu-item': Menu.Item,
     },
     data: function() {
@@ -28,8 +28,8 @@ export default {
         handleFetchUserInfo: function() {
             const userId = sessionStorage.getItem('userId') || '';
 
-            network.get(`/proxy/cms/user/${userId}`).then(result => {
-                if (result.status !== 200) {
+            network.get(`/cms/user/${userId}`).then(result => {
+                if (result.code !== 100200) {
                     message.error(result.msg);
                     return;
                 }

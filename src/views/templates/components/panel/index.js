@@ -45,8 +45,8 @@ export default {
             this.handleFetchTemplates();
         },
         handleFetchTemplates: function() {
-            network.get('/proxy/cms/template/search', this.search).then(result => {
-                if (result.status !== 200) {
+            network.get('/cms/template/search', this.search).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 this.total = result.data.total;
@@ -54,8 +54,8 @@ export default {
             });
         },
         handleCreateProjectByTemplate: function(item) {
-            network.get('/proxy/cms/projects/byTemplates', { templateId: item.id }).then(result => {
-                if (result.status !== 200) {
+            network.get('/cms/projects/byTemplates', { templateId: item.id }).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 this.$router.push(`/topic/${result.data.id}`);
@@ -65,8 +65,8 @@ export default {
             this.$router.push(`/topic/${item.projectId}`);
         },
         hangleDeleteTemplate: function(item) {
-            network.del(`/proxy/cms/template/${item.id}`).then(result => {
-                if (result.status !== 200) {
+            network.del(`/cms/template/${item.id}`).then(result => {
+                if (result.code !== 100200) {
                     return;
                 }
                 this.handleFetchTemplates();

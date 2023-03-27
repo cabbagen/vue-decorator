@@ -12,4 +12,6 @@
 
 #### 预览
 
+![预览](./resource/prev-2.png)
+
 ![预览](./resource/prev.png)
